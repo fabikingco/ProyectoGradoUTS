@@ -3,9 +3,11 @@ package com.fabianardila.proyectogradouts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Toolbar");
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -38,5 +39,15 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void btnEstudiantes(View view) {
+        startActivity(new Intent(this, LoginBibliotecarioActivity.class));
+        finish();
+    }
+
+    public void btnBibliotecario(View view) {
+        startActivity(new Intent(this, LoginBibliotecarioActivity.class));
+        finish();
     }
 }
