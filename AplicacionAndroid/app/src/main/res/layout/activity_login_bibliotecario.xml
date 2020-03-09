@@ -3,8 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@android:color/white"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".LoginBibliotecarioActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -34,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_medium"
-                android:text="Bienvenido a TarjEco,"
+                android:text="Bienvenido bibliotecario,"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:textColor="@color/blue_grey_800"
                 android:textStyle="bold" />
@@ -121,6 +123,7 @@
                 android:layout_marginTop="@dimen/spacing_medium"
                 android:clickable="true"
                 android:text="¿Olvido su contraseña?"
+                android:onClick="restablecerContrasena"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                 android:textColor="@color/blue_grey_400"
                 android:textStyle="bold" />
