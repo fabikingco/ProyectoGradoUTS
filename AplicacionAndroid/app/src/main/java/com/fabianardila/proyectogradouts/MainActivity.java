@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btnEstudiantes(View view) {
-        startActivity(new Intent(this, LoginBibliotecarioActivity.class));
+        startActivity(new Intent(this, ListarCategoriasActivity.class));
         finish();
     }
 
