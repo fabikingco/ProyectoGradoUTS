@@ -19,3 +19,5 @@ X
 Kapp/src/main/java/com/fabianardila/proyectogradouts/modelos/Categorias.java,d\2\d225b18e18d1b506ec831cf55403422b50aa7306
 €
 Papp/src/main/java/com/fabianardila/proyectogradouts/AdaptadorCategoriasGrid.java,a\6\a6345642f0bf0c108b6ff6132206feb5abd4e4ea
+}
+Mapp/src/main/java/com/fabianardila/proyectogradouts/SearchLibrosActivity.java,7\d\7d926ef0f4c15b05c962343f996e131854b19d5a
