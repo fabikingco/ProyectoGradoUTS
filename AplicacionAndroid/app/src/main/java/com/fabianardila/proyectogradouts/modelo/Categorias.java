@@ -1,6 +1,8 @@
-package com.fabianardila.proyectogradouts.modelos;
+package com.fabianardila.proyectogradouts.modelo;
 
-public class Categorias {
+import java.io.Serializable;
+
+public class Categorias implements Serializable {
 
     private String id;
     private String title;

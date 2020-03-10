@@ -29,4 +29,9 @@
         <item name="mrl_rippleColor">#8096989A</item>
     </style>
 
+    <style name="TextAppearance.Subhead.Bold" parent="@style/TextAppearance.AppCompat.Subhead">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
 </resources>

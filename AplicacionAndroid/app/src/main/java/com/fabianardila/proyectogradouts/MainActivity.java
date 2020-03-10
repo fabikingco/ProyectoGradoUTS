@@ -25,22 +25,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Toolbar");
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_principal, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-        } else {
-            Toast.makeText(getApplicationContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     public void btnEstudiantes(View view) {
         startActivity(new Intent(this, ListarCategoriasActivity.class));
         finish();

@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ListarCategoriasActivity"></activity>
+        <activity android:name=".ListTabsSubCategoriasActivity"></activity>
+        <activity android:name=".ListarCategoriasActivity" />
         <activity android:name=".MenuBibliotecario" />
         <activity android:name=".LoginBibliotecarioActivity" />
         <activity android:name=".MainActivity">
