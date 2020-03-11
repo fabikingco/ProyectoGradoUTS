@@ -26,20 +26,13 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/et_search"
+                <SearchView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@android:color/transparent"
-                    android:hint="Search"
-                    android:imeOptions="actionSearch"
-                    android:maxLines="1"
-                    android:singleLine="true">
+                    android:background="@android:color/transparent"/>
 
-                    <requestFocus />
 
-                </EditText>
 
                 <ImageButton
                     android:id="@+id/bt_clear"

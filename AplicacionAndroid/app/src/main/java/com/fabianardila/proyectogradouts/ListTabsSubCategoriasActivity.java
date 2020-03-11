@@ -20,6 +20,8 @@ import java.util.List;
 
 public class ListTabsSubCategoriasActivity extends AppCompatActivity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,5 +1,6 @@
 package com.fabianardila.proyectogradouts;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -14,16 +15,28 @@ import android.widget.Toast;
 
 import com.fabianardila.proyectogradouts.modelo.Categorias;
 import com.fabianardila.proyectogradouts.widget.SpacingItemDecoration;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.functions.FirebaseFunctions;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ListarCategoriasActivity extends AppCompatActivity {
 
+    private FirebaseFirestore mFirestore;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listar_categorias);
+
+        mFirestore = FirebaseFirestore.getInstance();
+
         initToolbar();
         initComponent();
     }
@@ -43,7 +56,7 @@ public class ListarCategoriasActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_search) {
-            Toast.makeText(getApplicationContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, SearchLibrosActivity.class));
         } else if (item.getItemId() == R.id.action_sesion){
             Toast.makeText(getApplicationContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
         } else {
@@ -59,16 +72,9 @@ public class ListarCategoriasActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setNestedScrollingEnabled(false);
 
-        List<Categorias> items = new ArrayList<>();
-        items.add(new Categorias("1", "Generalidades"));
-        items.add(new Categorias("1", "Filosofía y psicología"));
-        items.add(new Categorias("1", "Religión"));
-        items.add(new Categorias("1", "Ciencias sociales"));
-        items.add(new Categorias("1", "Matemáticas y ciencias naturales"));
-        items.add(new Categorias("1", "Tecnología y ciencias aplicadas"));
-        items.add(new Categorias("1", "Artes"));
-        items.add(new Categorias("1", "Literatura"));
-        items.add(new Categorias("1", "Historia y geografía"));
+        List<Categorias> items = obtenerItems();
+
+
 
         //set data and list adapter
         AdaptadorCategoriasGrid mAdapter = new AdaptadorCategoriasGrid(this, items);
@@ -85,5 +91,30 @@ public class ListarCategoriasActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private List<Categorias> obtenerItems() {
+        List<Categorias> items = new ArrayList<>();
+        mFirestore.collection("categoriasDeLibros")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        for(DocumentSnapshot doc:task.getResult()){
+                            Categorias categ = new Categorias(doc.getString("id"),
+                                    doc.getString("title"));
+                            items.add(categ);
+                        }
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(ListarCategoriasActivity.this,
+                                ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+        return items;
     }
 }
