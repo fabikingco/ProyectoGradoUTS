@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +30,9 @@ import java.util.List;
 public class ListarCategoriasActivity extends AppCompatActivity {
 
     private FirebaseFirestore mFirestore;
+
+    List<Categorias> items = null;
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,17 +70,45 @@ public class ListarCategoriasActivity extends AppCompatActivity {
     }
 
     private void initComponent() {
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         recyclerView.addItemDecoration(new SpacingItemDecoration(2, Tools.dpToPx(this, 8), true));
         recyclerView.setHasFixedSize(true);
         recyclerView.setNestedScrollingEnabled(false);
 
-        List<Categorias> items = obtenerItems();
+        items = obtenerItems();
+    }
 
+    private List<Categorias> obtenerItems() {
+        List<Categorias> items = new ArrayList<>();
+        mFirestore.collection("categoriasDeLibros")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
+                        for(DocumentSnapshot doc:task.getResult()){
+                            System.out.println("task = " + doc.getId());
+                            Categorias categ = new Categorias(doc.getString("id"),
+                                    doc.getString("title"));
+                            items.add(categ);
+                            cargarAdaptador();
+                        }
 
-        //set data and list adapter
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e("ERROR", "No se encontraron categorias");
+                        Toast.makeText(ListarCategoriasActivity.this,
+                                ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+        return items;
+    }
+
+    private void cargarAdaptador() {
         AdaptadorCategoriasGrid mAdapter = new AdaptadorCategoriasGrid(this, items);
         recyclerView.setAdapter(mAdapter);
 
@@ -90,31 +122,5 @@ public class ListarCategoriasActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-    }
-
-    private List<Categorias> obtenerItems() {
-        List<Categorias> items = new ArrayList<>();
-        mFirestore.collection("categoriasDeLibros")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        for(DocumentSnapshot doc:task.getResult()){
-                            Categorias categ = new Categorias(doc.getString("id"),
-                                    doc.getString("title"));
-                            items.add(categ);
-                        }
-
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(ListarCategoriasActivity.this,
-                                ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-        return items;
     }
 }

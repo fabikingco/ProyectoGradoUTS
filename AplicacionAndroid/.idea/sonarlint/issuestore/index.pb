@@ -31,3 +31,7 @@ z
 Japp/src/main/java/com/fabianardila/proyectogradouts/modelo/Categorias.java,1\1\11769b62cc969b0017999a1c266578e6374db885
 v
 Fapp/src/main/java/com/fabianardila/proyectogradouts/modelo/Libros.java,c\3\c3df1b712489dd177d9fef088758832f57ea841b
+N
+app/src/main/java/AppMain.java,3\c\3cdf709629f20f4cc258d6a7be10a92f53a44a65
+Å
+Qapp/src/main/java/com/fabianardila/proyectogradouts/LoginEstudiantesActivity.java,3\3\334d4180ac88ded35b8272c51ee650a9b869c516

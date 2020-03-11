@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import dmax.dialog.SpotsDialog;
 
-public class LoginBibliotecarioActivity extends AppCompatActivity {
+public class LoginEstudiantesActivity extends AppCompatActivity {
 
     EditText etCorreo;
     EditText etPass;
@@ -28,19 +28,13 @@ public class LoginBibliotecarioActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_bibliotecario);
+        setContentView(R.layout.activity_login_estudiantes);
 
         etCorreo = findViewById(R.id.etCorreo);
         etPass = findViewById(R.id.etPass);
 
         mAuth = FirebaseAuth.getInstance();
         dialog = new SpotsDialog.Builder().setContext(this).build();
-    }
-
-    public void restablecerContrasena(View view) {
-        if (view != null) {
-            Toast.makeText(this, "Disponible proximamente", Toast.LENGTH_SHORT).show();
-        }
     }
 
     public void iniciarSesion(View view) {
@@ -58,12 +52,12 @@ public class LoginBibliotecarioActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             dialog.dismiss();
-                            Intent intent = new Intent(LoginBibliotecarioActivity.this, MainActivity.class);
+                            Intent intent = new Intent(LoginEstudiantesActivity.this, ListarCategoriasActivity.class);
                             startActivity(intent);
                             finish();
                         } else {
                             dialog.dismiss();
-                            Toast.makeText(LoginBibliotecarioActivity.this, "Inicio de sesion fallido", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginEstudiantesActivity.this, "Inicio de sesion fallido", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -73,5 +67,11 @@ public class LoginBibliotecarioActivity extends AppCompatActivity {
 
     private boolean validarCampos() {
         return true;
+    }
+
+    public void restablecerContrasena(View view) {
+        if (view != null) {
+            Toast.makeText(this, "Disponible proximamente", Toast.LENGTH_SHORT).show();
+        }
     }
 }
