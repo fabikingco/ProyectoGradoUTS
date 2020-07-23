@@ -25,9 +25,9 @@
             app:tabIndicatorHeight="3dp"
             app:tabMinWidth="90dp"
             app:tabMode="scrollable"
-            app:tabSelectedTextColor="@android:color/white"
+            app:tabSelectedTextColor="@android:color/black"
             app:tabTextAppearance="@style/TextAppearance.Subhead.Bold"
-            app:tabTextColor="@color/grey_20"
+            app:tabTextColor="@color/grey_80"
             />
 
     </com.google.android.material.appbar.AppBarLayout>

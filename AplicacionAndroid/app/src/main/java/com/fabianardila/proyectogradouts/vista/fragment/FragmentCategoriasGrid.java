@@ -1,4 +1,4 @@
-package com.fabianardila.proyectogradouts.fragment;
+package com.fabianardila.proyectogradouts.vista.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
