@@ -1,5 +1,6 @@
 package com.platzi.android.firestore.network
 
+import com.fabianardila.proyectogradouts.modelo.Libro
 import com.google.firebase.firestore.FirebaseFirestore
 
 const val LIBROS_COLECTION_NAME = "libros"
@@ -11,6 +12,35 @@ class FirestoreService(val firebaseFirestore: FirebaseFirestore) {
         firebaseFirestore.collection(collectionName).document(id).set(data)
             .addOnSuccessListener { callback.onSuccess(result = null) }
             .addOnFailureListener { exception -> callback.onFailed(exception) }
+    }
+
+    fun getLibros(callback: Callback<List<Libro>>?) {
+        firebaseFirestore.collection(LIBROS_COLECTION_NAME)
+            .get()
+            .addOnSuccessListener { result ->
+                for (documment in result) {
+                    val libroList = result.toObjects(Libro::class.java)
+                    callback!!.onSuccess(libroList)
+                    break
+                }
+            }
+            .addOnFailureListener { exception ->
+                callback!!.onFailed(exception)
+            }
+    }
+
+    fun listenForUpdates(libros: List<Libro>, listener: RealtimeDataListener<Libro>) {
+        val libroReference = firebaseFirestore.collection(LIBROS_COLECTION_NAME)
+        for (libro in libros) {
+            libroReference.document(libro.id!!).addSnapshotListener{snapshot, e ->
+                if (e != null) {
+                    listener.onError(e)
+                }
+                if (snapshot != null && snapshot.exists()) {
+                    listener.onDataChange(snapshot.toObject(Libro::class.java)!!)
+                }
+            }
+        }
     }
 
     /*fun updateUser(user: User, callback: Callback<User>?) {

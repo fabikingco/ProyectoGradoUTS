@@ -15,10 +15,13 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.fabianardila.proyectogradouts.modelo.Categorias;
+import com.fabianardila.proyectogradouts.vista.activity.ListadoLibrosActivity;
+import com.fabianardila.proyectogradouts.vista.activity.LoginActivity;
 import com.fabianardila.proyectogradouts.widget.SpacingItemDecoration;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -62,6 +65,10 @@ public class ListarCategoriasActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.action_search) {
             startActivity(new Intent(this, SearchLibrosActivity.class));
         } else if (item.getItemId() == R.id.action_sesion){
+            FirebaseAuth auth = FirebaseAuth.getInstance();
+            auth.signOut();
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
             Toast.makeText(getApplicationContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getApplicationContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
@@ -81,6 +88,8 @@ public class ListarCategoriasActivity extends AppCompatActivity {
 
     private List<Categorias> obtenerItems() {
         List<Categorias> items = new ArrayList<>();
+        Categorias catTodos = new Categorias("1000", "TODOS");
+        items.add(catTodos);
         mFirestore.collection("categoriasDeLibros")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -88,7 +97,6 @@ public class ListarCategoriasActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
                         for(DocumentSnapshot doc:task.getResult()){
-                            System.out.println("task = " + doc.getId());
                             Categorias categ = new Categorias(doc.getString("id"),
                                     doc.getString("title"));
                             items.add(categ);
@@ -118,7 +126,7 @@ public class ListarCategoriasActivity extends AppCompatActivity {
             public void onItemClick(View view, Categorias categorias, int position) {
                 Intent intent = new Intent();
                 intent.putExtra("categoria", categorias);
-                intent.setClass(ListarCategoriasActivity.this, ListTabsSubCategoriasActivity.class);
+                intent.setClass(ListarCategoriasActivity.this, ListadoLibrosActivity.class);
                 startActivity(intent);
             }
         });

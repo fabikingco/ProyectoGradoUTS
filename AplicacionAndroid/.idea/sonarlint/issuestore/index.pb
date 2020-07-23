@@ -43,3 +43,11 @@ r
 Bapp/src/main/java/com/fabianardila/proyectogradouts/modelo/User.kt,a\d\adabb687a86bd0ad8ca9d45c3f6a1846cecc1af6
 s
 Capp/src/main/java/com/fabianardila/proyectogradouts/modelo/Libro.kt,5\c\5c475944921a85ea5799e406671ebe7fc27e4578
+Š
+Zapp/src/main/java/com/fabianardila/proyectogradouts/vista/adapter/LibrosAdapterListener.kt,d\d\dd390c1093fef5082d56f15a0e750f87dceabdfb
+‚
+Rapp/src/main/java/com/fabianardila/proyectogradouts/vista/adapter/LibrosAdapter.kt,8\f\8ff4b114cf0846a5d8e2e41bf1b9e05393972cce
+‹
+[app/src/main/java/com/fabianardila/proyectogradouts/vista/activity/ListadoLibrosActivity.kt,2\f\2f98433b663243c1a40e86bbedf56fa4966e8f92
+ƒ
+Sapp/src/main/java/com/fabianardila/proyectogradouts/vista/fragment/LibroFragment.kt,3\8\387c7d0416673b3415f2c4fe9080b09785948bd2
