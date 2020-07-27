@@ -30,6 +30,19 @@ class FirestoreService(val firebaseFirestore: FirebaseFirestore) {
             }
     }
 
+    fun getLibrosByCategoria(categoria: String, callback: Callback<List<Libro>>?) {
+        firebaseFirestore.collection(LIBROS_COLECTION_NAME)
+            .whereEqualTo("categoria", categoria)
+            .get()
+            .addOnSuccessListener { documents ->
+                val libroList = documents.toObjects(Libro::class.java)
+                callback!!.onSuccess(libroList)
+            }
+            .addOnFailureListener { exception ->
+                callback!!.onFailed(exception)
+            }
+    }
+
     fun listenForUpdates(libros: List<Libro>, listener: RealtimeDataListener<Libro>) {
         val libroReference = firebaseFirestore.collection(LIBROS_COLECTION_NAME)
         for (libro in libros) {

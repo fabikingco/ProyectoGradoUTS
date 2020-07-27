@@ -51,7 +51,7 @@ public class ListarCategoriasActivity extends AppCompatActivity {
     private void initToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Toolbar");
+        getSupportActionBar().setTitle("Categorias de libros");
     }
 
     @Override

@@ -4,8 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.fabianardila.proyectogradouts.MainActivity
 import com.fabianardila.proyectogradouts.R
+import com.fabianardila.proyectogradouts.modelo.Categorias
 import com.fabianardila.proyectogradouts.modelo.Libro
 import com.fabianardila.proyectogradouts.vista.adapter.LibrosAdapter
 import com.fabianardila.proyectogradouts.vista.adapter.LibrosAdapterListener
@@ -30,11 +30,23 @@ class ListadoLibrosActivity : AppCompatActivity(), LibrosAdapterListener {
         firestoreService = FirestoreService(FirebaseFirestore.getInstance())
 
         configureRecyclerView()
-        cargarLibros()
+
+        val bundle = intent.extras
+        if (bundle != null) {
+            val categoria = bundle["categoria"] as Categorias
+            if (categoria.id != null) {
+                if (categoria.id == "1000" || categoria.id == "") {
+                    cargarLibros()
+                } else {
+                    cargarLibrosPorCategoria(categoria.id)
+                }
+            }
+        } else {
+            cargarLibros()
+        }
     }
 
     private fun configureRecyclerView() {
-        //TODO("Not yet implemented")
         recyclerView.setHasFixedSize(true)
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
@@ -42,11 +54,25 @@ class ListadoLibrosActivity : AppCompatActivity(), LibrosAdapterListener {
     }
 
     private fun cargarLibros() {
-        //TODO("Not yet implemented")
         firestoreService.getLibros(object : Callback<List<Libro>> {
             override fun onSuccess(result: List<Libro>?) {
-                //TODO("Not yet implemented")
+                addRealtimeDatabaseListener(result!!)
+                this@ListadoLibrosActivity.runOnUiThread {
+                    librosAdapter.librosList = result!!
+                    librosAdapter.notifyDataSetChanged()
+                }
+            }
 
+            override fun onFailed(exception: Exception) {
+                //TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    private fun cargarLibrosPorCategoria(categoria: String) {
+        firestoreService.getLibrosByCategoria(categoria, object : Callback<List<Libro>> {
+            override fun onSuccess(result: List<Libro>?) {
                 addRealtimeDatabaseListener(result!!)
                 this@ListadoLibrosActivity.runOnUiThread {
                     librosAdapter.librosList = result!!
