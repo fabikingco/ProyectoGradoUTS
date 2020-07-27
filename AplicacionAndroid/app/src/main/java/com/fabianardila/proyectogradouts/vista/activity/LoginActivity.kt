@@ -8,11 +8,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.fabianardila.proyectogradouts.MainActivity
 import com.fabianardila.proyectogradouts.R
+import com.fabianardila.proyectogradouts.modelo.User
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FirebaseFirestore
+import com.platzi.android.firestore.network.Callback
 import com.platzi.android.firestore.network.FirestoreService
 import kotlinx.android.synthetic.main.activity_login.*
+import java.lang.Exception
 
 class LoginActivity : AppCompatActivity() {
 
@@ -25,6 +29,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        firestoreService = FirestoreService(FirebaseFirestore.getInstance())
     }
 
     fun btnRegistrarse(view: View) {
@@ -46,9 +51,23 @@ class LoginActivity : AppCompatActivity() {
                 Snackbar.LENGTH_LONG
             )
                 .setAction("Info", null).show()
-            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-            startActivity(intent)
-            finish()
+
+            firestoreService.findUserByEmail(currentUser!!.email.toString(), object : Callback<User>{
+                override fun onSuccess(result: User?) {
+                    //TODO("Not yet implemented")
+                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                    intent.putExtra("user", result)
+                    startActivity(intent)
+                    finish()
+                }
+
+                override fun onFailed(exception: Exception) {
+                    //TODO("Not yet implemented")
+                    Toast.makeText(baseContext, "No encontre el usuario, Me quedo mal la sentencia",
+                        Toast.LENGTH_SHORT).show()
+                }
+
+            })
         }
 
     }

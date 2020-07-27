@@ -1,6 +1,7 @@
 package com.platzi.android.firestore.network
 
 import com.fabianardila.proyectogradouts.modelo.Libro
+import com.fabianardila.proyectogradouts.modelo.User
 import com.google.firebase.firestore.FirebaseFirestore
 
 const val LIBROS_COLECTION_NAME = "libros"
@@ -41,6 +42,20 @@ class FirestoreService(val firebaseFirestore: FirebaseFirestore) {
                 }
             }
         }
+    }
+
+    fun findUserByEmail(email: String, callback: Callback<User>) {
+        firebaseFirestore.collection(USER_COLECTION_NAME)
+            .whereEqualTo("correo", email)
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    callback.onSuccess(document.toObject(User::class.java))
+                }
+            }
+            .addOnFailureListener { exception ->
+                callback.onFailed(exception)
+            }
     }
 
     /*fun updateUser(user: User, callback: Callback<User>?) {

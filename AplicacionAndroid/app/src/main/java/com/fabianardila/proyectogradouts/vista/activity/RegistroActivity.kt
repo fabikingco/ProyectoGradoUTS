@@ -12,6 +12,7 @@ import com.fabianardila.proyectogradouts.R
 import com.fabianardila.proyectogradouts.modelo.User
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.platzi.android.firestore.network.Callback
 import com.platzi.android.firestore.network.FirestoreService
@@ -106,7 +107,7 @@ class RegistroActivity : AppCompatActivity() {
         user.id = etCedula.text.toString()
         user.nombre = etNombre.text.toString()
         user.apellido = etApellidos.text.toString()
-        user.programaAcademico = etApellidos.text.toString()
+        user.programaAcademico = etProgramaAcademico.text.toString()
         user.correo = etCorreo.text.toString() + "@uts.edu.co"
         user.celular = etCelular.text.toString()
 

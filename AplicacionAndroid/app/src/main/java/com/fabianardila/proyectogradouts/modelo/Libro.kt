@@ -1,6 +1,8 @@
 package com.fabianardila.proyectogradouts.modelo
 
-class Libro {
+import java.io.Serializable
+
+class Libro : Serializable{
 
     var id: String? = null
     var titulo: String? = null

@@ -5,11 +5,14 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.fabianardila.proyectogradouts.modelo.User;
+import com.fabianardila.proyectogradouts.vista.activity.LibroActivity;
 import com.fabianardila.proyectogradouts.vista.activity.ListadoLibrosActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,6 +21,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent intent = getIntent();
+        User user = (User) intent.getSerializableExtra("user");
+        if (user != null && user.getBibliotecario()) {
+            startActivity(new Intent(this, ListadoLibrosActivity.class));
+        } else {
+            startActivity(new Intent(this, ListarCategoriasActivity.class));
+        }
+        finish();
         initToolbar();
     }
 

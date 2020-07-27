@@ -1,8 +1,10 @@
 package com.fabianardila.proyectogradouts.vista.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.fabianardila.proyectogradouts.MainActivity
 import com.fabianardila.proyectogradouts.R
 import com.fabianardila.proyectogradouts.modelo.Libro
 import com.fabianardila.proyectogradouts.vista.adapter.LibrosAdapter
@@ -81,5 +83,8 @@ class ListadoLibrosActivity : AppCompatActivity(), LibrosAdapterListener {
 
     override fun onClickLibroListener(libro: Libro) {
         //TODO("Not yet implemented")
+        val intent = Intent(this@ListadoLibrosActivity, LibroActivity::class.java)
+        intent.putExtra("Libro", libro)
+        startActivity(intent)
     }
 }

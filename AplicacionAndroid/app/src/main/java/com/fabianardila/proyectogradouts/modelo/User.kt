@@ -1,6 +1,8 @@
 package com.fabianardila.proyectogradouts.modelo
 
-class User {
+import java.io.Serializable
+
+class User : Serializable {
     var id: String = ""
     var nombre: String = ""
     var apellido: String = ""
@@ -8,4 +10,5 @@ class User {
     var celular: String = ""
     var programaAcademico: String = ""
     var librosList = null
+    var bibliotecario: Boolean = false
 }

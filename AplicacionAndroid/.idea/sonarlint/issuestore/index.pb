@@ -51,3 +51,5 @@ Rapp/src/main/java/com/fabianardila/proyectogradouts/vista/adapter/LibrosAdapter
 [app/src/main/java/com/fabianardila/proyectogradouts/vista/activity/ListadoLibrosActivity.kt,2\f\2f98433b663243c1a40e86bbedf56fa4966e8f92
 ƒ
 Sapp/src/main/java/com/fabianardila/proyectogradouts/vista/fragment/LibroFragment.kt,3\8\387c7d0416673b3415f2c4fe9080b09785948bd2
+ƒ
+Sapp/src/main/java/com/fabianardila/proyectogradouts/vista/activity/LibroActivity.kt,d\2\d2dc1935b9cdffbb26dcc88810d733ed034c24e0
