@@ -36,4 +36,8 @@ class MenuBibliotecarioActivity : AppCompatActivity() {
         builder.setNegativeButton(getString(R.string.cancelar), null)
         builder.show()
     }
+
+    fun clickSobreNosotros(view: View) {
+        startActivity(Intent(this@MenuBibliotecarioActivity, AboutActivity::class.java))
+    }
 }

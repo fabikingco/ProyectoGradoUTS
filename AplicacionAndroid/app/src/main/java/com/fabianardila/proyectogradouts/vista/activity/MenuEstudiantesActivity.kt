@@ -67,5 +67,9 @@ class MenuEstudiantesActivity : AppCompatActivity() {
         builder.show()
     }
 
+    fun clickSobreNosotros(view: View) {
+        startActivity(Intent(this@MenuEstudiantesActivity, AboutActivity::class.java))
+    }
+
 
 }
