@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.fabianardila.proyectogradouts.modelo.Categorias;
+import com.fabianardila.proyectogradouts.vista.activity.BuscarLibroActivity;
 import com.fabianardila.proyectogradouts.vista.activity.ListadoLibrosActivity;
 import com.fabianardila.proyectogradouts.widget.SpacingItemDecoration;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -60,7 +61,7 @@ public class ListarCategoriasActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_search) {
-            Toast.makeText(getApplicationContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, BuscarLibroActivity.class));
         } else {
             Toast.makeText(getApplicationContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
         }
@@ -77,7 +78,14 @@ public class ListarCategoriasActivity extends AppCompatActivity {
         items = obtenerItems();
     }
 
+    private int posicion = 0;
+    private void laPosicion() {
+        posicion = 1;
+    }
+
     private List<Categorias> obtenerItems() {
+
+        posicion = 1;
         List<Categorias> items = new ArrayList<>();
         Categorias catTodos = new Categorias("1000", "TODOS");
         items.add(catTodos);
@@ -116,7 +124,8 @@ public class ListarCategoriasActivity extends AppCompatActivity {
             @Override
             public void onItemClick(View view, Categorias categorias, int position) {
                 Intent intent = new Intent();
-                intent.putExtra("categoria", categorias);
+                intent.putExtra("filter", "categoria");
+                intent.putExtra("dataFilter", categorias.getId());
                 intent.setClass(ListarCategoriasActivity.this, ListadoLibrosActivity.class);
                 startActivity(intent);
             }

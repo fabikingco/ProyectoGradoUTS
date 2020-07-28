@@ -43,6 +43,19 @@ class FirestoreService(val firebaseFirestore: FirebaseFirestore) {
             }
     }
 
+    fun getLibrosByFilter(filter: String, dataFilter: String, callback: Callback<List<Libro>>?) {
+        firebaseFirestore.collection(LIBROS_COLECTION_NAME)
+            .whereEqualTo(filter, dataFilter)
+            .get()
+            .addOnSuccessListener { documents ->
+                val libroList = documents.toObjects(Libro::class.java)
+                callback!!.onSuccess(libroList)
+            }
+            .addOnFailureListener { exception ->
+                callback!!.onFailed(exception)
+            }
+    }
+
     fun listenForUpdates(libros: List<Libro>, listener: RealtimeDataListener<Libro>) {
         val libroReference = firebaseFirestore.collection(LIBROS_COLECTION_NAME)
         for (libro in libros) {
@@ -84,6 +97,29 @@ class FirestoreService(val firebaseFirestore: FirebaseFirestore) {
             .addOnFailureListener { exception ->
                 callback.onFailed(exception)
             }
+    }
+
+    fun getUserByFilter(filter: String, dataFilter: String, callback: Callback<List<User>>?) {
+        firebaseFirestore.collection(USER_COLECTION_NAME)
+            .whereEqualTo(filter, dataFilter)
+            .get()
+            .addOnSuccessListener { documents ->
+                val userList = documents.toObjects(User::class.java)
+                callback!!.onSuccess(userList)
+            }
+            .addOnFailureListener { exception ->
+                callback!!.onFailed(exception)
+            }
+    }
+
+    fun updateTipoUser(user: User, callback: Callback<User>?) {
+        firebaseFirestore.collection(USER_COLECTION_NAME)
+            .document(user.id)
+            .update("bibliotecario", user.bibliotecario)
+            .addOnSuccessListener {
+                callback?.onSuccess(user)
+            }
+            .addOnFailureListener { exception -> callback!!.onFailed(exception) }
     }
 
     /*fun updateUser(user: User, callback: Callback<User>?) {

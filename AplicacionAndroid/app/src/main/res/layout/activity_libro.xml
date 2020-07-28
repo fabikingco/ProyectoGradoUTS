@@ -109,10 +109,12 @@
     </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabLibro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/spacing_mlarge"
         android:clickable="true"
+        android:onClick="clickFabLibro"
         android:tint="@android:color/white"
         android:backgroundTint="@color/amber_700"
         app:fabSize="normal"

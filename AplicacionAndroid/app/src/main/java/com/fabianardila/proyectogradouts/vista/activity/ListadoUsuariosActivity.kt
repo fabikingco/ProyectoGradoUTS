@@ -1,19 +1,22 @@
 package com.fabianardila.proyectogradouts.vista.activity
 
+import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fabianardila.proyectogradouts.R
 import com.fabianardila.proyectogradouts.modelo.User
+import com.fabianardila.proyectogradouts.network.Callback
+import com.fabianardila.proyectogradouts.network.FirestoreService
 import com.fabianardila.proyectogradouts.vista.adapter.UsuariosAdapter
 import com.fabianardila.proyectogradouts.vista.adapter.UsuariosAdapterListener
 import com.google.firebase.firestore.FirebaseFirestore
-import com.fabianardila.proyectogradouts.network.Callback
-import com.fabianardila.proyectogradouts.network.FirestoreService
 import kotlinx.android.synthetic.main.activity_listado_usuarios.*
 
 class ListadoUsuariosActivity : AppCompatActivity(), UsuariosAdapterListener {
@@ -49,6 +52,7 @@ class ListadoUsuariosActivity : AppCompatActivity(), UsuariosAdapterListener {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.action_search) {
+            startActivity(Intent(this@ListadoUsuariosActivity, BuscarUsuarioActivity::class.java))
             Toast.makeText(applicationContext, "Opcion no disponible", Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(applicationContext, item.title, Toast.LENGTH_SHORT).show()
@@ -84,8 +88,56 @@ class ListadoUsuariosActivity : AppCompatActivity(), UsuariosAdapterListener {
         Toast.makeText(applicationContext, "Opcion 1", Toast.LENGTH_SHORT).show()
     }
 
+    private var selectTipoUsuario: String? = null
+    private val opcionesTipoUsuario = arrayOf(
+        "Estudiante", "Bibliotecario"
+    )
+    private var posInit = 0
+    private var selectOpc = 0
+
+
     override fun onClickCambiarTipo(user: User) {
-        //TODO("Not yet implemented")
-        Toast.makeText(applicationContext, "Opcion 2", Toast.LENGTH_SHORT).show()
+
+        if (user.bibliotecario) {
+            selectTipoUsuario = opcionesTipoUsuario[1]
+            posInit = 1
+        } else {
+            selectTipoUsuario = opcionesTipoUsuario[0]
+            posInit = 0
+        }
+
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        builder.setTitle("Seleciona el tipo de usuario")
+        builder.setSingleChoiceItems(opcionesTipoUsuario, posInit,
+            DialogInterface.OnClickListener { dialogInterface, i ->
+                selectTipoUsuario = opcionesTipoUsuario.get(i)
+                selectOpc = i
+            })
+        builder.setPositiveButton("OK",
+            DialogInterface.OnClickListener { dialogInterface, i ->
+                if (posInit == selectOpc) {
+                    dialogInterface.dismiss()
+                } else {
+                    updateTipoUsuario(user)
+                }
+
+            })
+        builder.setNegativeButton("CANCEL", null)
+        builder.show()
+    }
+
+    private fun updateTipoUsuario(user: User) {
+        val bibliotecario = user.bibliotecario
+        user.bibliotecario = !bibliotecario
+        firestoreService.updateTipoUser(user, object : Callback<User>{
+            override fun onSuccess(result: User?) {
+                cargarUsuarios()
+            }
+
+            override fun onFailed(exception: java.lang.Exception) {
+                Toast.makeText(applicationContext, "Error al actualizar usuario", Toast.LENGTH_SHORT).show()
+            }
+
+        })
     }
 }

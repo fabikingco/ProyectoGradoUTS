@@ -6,4 +6,9 @@
     <string name="cancelar">Cancelar</string>
     <string name="estudiante">Estudiante</string>
     <string name="bibliotecario">Bibliotecario</string>
+    <string name="buscar">Buscar</string>
+    <string name="borrar_seleccion">Borrar selección</string>
+    <string name="titulo">Titulo</string>
+    <string name="titulos">Titulos</string>
+    <string name="autores">Autores</string>
 </resources>

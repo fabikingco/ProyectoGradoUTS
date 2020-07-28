@@ -15,8 +15,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".vista.activity.AboutActivity"/>
-        <activity android:name=".vista.activity.PerfilUsuarioActivity"/>
+        <activity android:name=".vista.activity.BuscarUsuarioActivity"></activity>
+        <activity android:name=".vista.activity.BuscarLibroActivity" />
+        <activity android:name=".vista.activity.AboutActivity" />
+        <activity android:name=".vista.activity.PerfilUsuarioActivity" />
         <activity android:name=".vista.activity.MenuEstudiantesActivity" />
         <activity android:name=".vista.activity.ListadoUsuariosActivity" />
         <activity android:name=".vista.activity.MenuBibliotecarioActivity" />

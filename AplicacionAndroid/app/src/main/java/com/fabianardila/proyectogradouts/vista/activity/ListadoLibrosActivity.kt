@@ -3,11 +3,14 @@ package com.fabianardila.proyectogradouts.vista.activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fabianardila.proyectogradouts.R
-import com.fabianardila.proyectogradouts.modelo.Categorias
 import com.fabianardila.proyectogradouts.modelo.Libro
 import com.fabianardila.proyectogradouts.vista.adapter.LibrosAdapter
 import com.fabianardila.proyectogradouts.vista.adapter.LibrosAdapterListener
@@ -30,23 +33,48 @@ class ListadoLibrosActivity : AppCompatActivity(), LibrosAdapterListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_listado_libros)
 
+        initToolbar()
         firestoreService = FirestoreService(FirebaseFirestore.getInstance())
 
         configureRecyclerView()
 
         val bundle = intent.extras
         if (bundle != null) {
-            val categoria = bundle["categoria"] as Categorias
-            if (categoria.id != null) {
-                if (categoria.id == "1000" || categoria.id == "") {
+            val filter = bundle.getString("filter")
+            if (filter != null) {
+                val dataFilter = bundle.getString("dataFilter")
+                if (dataFilter != null && dataFilter != "1000")
+                    cargarLibrosPorFiltros(filter, dataFilter)
+                else
                     cargarLibros()
-                } else {
-                    cargarLibrosPorCategoria(categoria.id)
-                }
+            } else {
+                cargarLibros()
             }
         } else {
             cargarLibros()
         }
+    }
+
+    private fun initToolbar() {
+        val toolbar =
+            findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar!!.title = "Listado de libros"
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_principal_no_login, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.action_search) {
+            startActivity(Intent(this@ListadoLibrosActivity, BuscarUsuarioActivity::class.java))
+            Toast.makeText(applicationContext, "Opcion no disponible", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(applicationContext, item.title, Toast.LENGTH_SHORT).show()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun configureRecyclerView() {
@@ -81,8 +109,8 @@ class ListadoLibrosActivity : AppCompatActivity(), LibrosAdapterListener {
         })
     }
 
-    private fun cargarLibrosPorCategoria(categoria: String) {
-        firestoreService.getLibrosByCategoria(categoria, object : Callback<List<Libro>> {
+    private fun cargarLibrosPorFiltros(filter: String, dataFilter: String) {
+        firestoreService.getLibrosByFilter(filter, dataFilter, object : Callback<List<Libro>> {
             override fun onSuccess(result: List<Libro>?) {
                 Log.d(TAG, "Consulta de libros exitosa por categorias")
                 addRealtimeDatabaseListener(result!!)

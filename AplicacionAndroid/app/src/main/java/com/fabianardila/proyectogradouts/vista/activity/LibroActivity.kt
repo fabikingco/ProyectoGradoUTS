@@ -2,10 +2,13 @@ package com.fabianardila.proyectogradouts.vista.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.fabianardila.proyectogradouts.R
 import com.fabianardila.proyectogradouts.modelo.Libro
+import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_libro.*
+import kotlinx.android.synthetic.main.activity_login.*
 
 class LibroActivity : AppCompatActivity() {
 
@@ -22,5 +25,13 @@ class LibroActivity : AppCompatActivity() {
         tvAutoresLibro.text = libro!!.autores
         tvEdicionLibro.text = libro!!.edicion
         tvFechaPublicacionLibro.text = libro!!.fechaPublicacion
+    }
+
+    fun clickFabLibro(view: View) {
+        Snackbar.make(
+            view,
+            "Click Fab",
+            Snackbar.LENGTH_LONG
+        ).setAction("Info", null).show()
     }
 }
