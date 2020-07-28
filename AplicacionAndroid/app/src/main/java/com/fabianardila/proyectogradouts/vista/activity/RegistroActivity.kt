@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.fabianardila.proyectogradouts.R
 import com.fabianardila.proyectogradouts.modelo.User
 import com.google.android.material.snackbar.Snackbar
@@ -32,7 +33,15 @@ class RegistroActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registro)
 
+        initToolbar()
         firestoreService = FirestoreService(FirebaseFirestore.getInstance())
+    }
+
+    private fun initToolbar() {
+        val toolbar =
+            findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar!!.title = "Registro"
     }
 
     private fun showErrorMessage(view: View) {

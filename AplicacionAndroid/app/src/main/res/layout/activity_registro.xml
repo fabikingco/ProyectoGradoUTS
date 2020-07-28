@@ -1,21 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     tools:context=".vista.activity.RegistroActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/toolbar" />
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Registro"
-        android:paddingTop="5dp"
-        android:textAppearance="?attr/textAppearanceHeadline4"
-        android:textColor="@color/utsColorGreen"
+        android:fontFamily="@font/roboto"
         android:gravity="center"
-        android:fontFamily="@font/roboto" />
+        android:paddingTop="5dp"
+        android:text="Registro"
+        android:textAppearance="?attr/textAppearanceHeadline4"
+        android:textColor="@color/utsColorGreen" />
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -43,22 +52,22 @@
                     android:padding="@dimen/spacing_large">
 
                     <TextView
-                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Escanear cedula" />
+                        android:text="Escanear cedula"
+                        android:visibility="gone" />
 
                     <View
-                        android:visibility="gone"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/spacing_medium" />
+                        android:layout_height="@dimen/spacing_medium"
+                        android:visibility="gone" />
 
                     <androidx.cardview.widget.CardView
-                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/spacing_middle"
                         android:layout_marginRight="@dimen/spacing_middle"
+                        android:visibility="gone"
                         app:cardBackgroundColor="@android:color/white"
                         app:cardCornerRadius="2dp"
                         app:cardElevation="2dp">
@@ -73,9 +82,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentStart="true"
                                 android:layout_centerVertical="true"
+                                android:layout_toLeftOf="@id/btnScan"
                                 android:paddingLeft="@dimen/spacing_medium"
                                 android:paddingRight="@dimen/spacing_medium"
-                                android:layout_toLeftOf="@id/btnScan"
                                 android:text="Lee el codigo de barras de la cedula"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                                 android:textColor="@color/grey_90" />
@@ -86,11 +95,11 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
                                 android:layout_centerVertical="true"
-                                app:icon="@drawable/barcode_scan"
-                                android:textColor="@android:color/black"
-                                app:iconTint="@android:color/black"
                                 android:onClick="scanCedula"
-                                android:text="Escanear"/>
+                                android:text="Escanear"
+                                android:textColor="@android:color/black"
+                                app:icon="@drawable/barcode_scan"
+                                app:iconTint="@android:color/black" />
 
                         </RelativeLayout>
 
@@ -128,10 +137,10 @@
                                     android:id="@+id/tilNombre"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:textColorHint="@color/grey_40"
-                                    app:startIconDrawable="@drawable/ic_account"
                                     android:hint="Nombres"
-                                    app:errorTextAppearance="@style/Error">
+                                    android:textColorHint="@color/grey_40"
+                                    app:errorTextAppearance="@style/Error"
+                                    app:startIconDrawable="@drawable/ic_account">
 
                                     <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/etNombre"
@@ -155,10 +164,10 @@
                                     android:id="@+id/tilApellidos"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:textColorHint="@color/grey_40"
-                                    app:startIconDrawable="@drawable/ic_account"
                                     android:hint="Apellidos"
-                                    app:errorTextAppearance="@style/Error">
+                                    android:textColorHint="@color/grey_40"
+                                    app:errorTextAppearance="@style/Error"
+                                    app:startIconDrawable="@drawable/ic_account">
 
                                     <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/etApellidos"
@@ -182,10 +191,10 @@
                                     android:id="@+id/tilCedula"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:textColorHint="@color/grey_40"
-                                    app:startIconDrawable="@drawable/ic_card_account"
                                     android:hint="Cedula"
-                                    app:errorTextAppearance="@style/Error">
+                                    android:textColorHint="@color/grey_40"
+                                    app:errorTextAppearance="@style/Error"
+                                    app:startIconDrawable="@drawable/ic_card_account">
 
                                     <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/etCedula"
@@ -209,19 +218,19 @@
                                     android:id="@+id/tilProgramaAcademico"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:textColorHint="@color/grey_40"
-                                    app:startIconDrawable="@drawable/ic_book"
                                     android:hint="Programa Academico"
-                                    app:errorTextAppearance="@style/Error">
+                                    android:textColorHint="@color/grey_40"
+                                    app:errorTextAppearance="@style/Error"
+                                    app:startIconDrawable="@drawable/ic_book">
 
                                     <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/etProgramaAcademico"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:cursorVisible="false"
                                         android:focusable="false"
                                         android:inputType="none"
-                                        android:cursorVisible="false"
-                                        android:onClick="listaProgramasAcademicos"/>
+                                        android:onClick="listaProgramasAcademicos" />
                                 </com.google.android.material.textfield.TextInputLayout>
                             </LinearLayout>
 
@@ -241,8 +250,8 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:hint="Correo UTS"
-                                    app:startIconDrawable="@drawable/ic_phone_android"
-                                    android:textColorHint="@color/grey_40">
+                                    android:textColorHint="@color/grey_40"
+                                    app:startIconDrawable="@drawable/ic_phone_android">
 
                                     <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/etCorreo"
@@ -256,11 +265,10 @@
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
-                                    android:text="\@uts.edu.co"
                                     android:gravity="center_vertical"
-                                    android:textAppearance="?attr/textAppearanceHeadline6"
                                     android:padding="8dp"
-                                    />
+                                    android:text="\@uts.edu.co"
+                                    android:textAppearance="?attr/textAppearanceHeadline6" />
                             </LinearLayout>
 
                             <View
@@ -277,21 +285,21 @@
                                     android:id="@+id/tilPassword"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:textColorHint="@color/grey_40"
-                                    app:startIconDrawable="@drawable/ic_lock"
                                     android:hint="Contraseña"
-                                    app:helperText="Codigo de 6 digitos"
-
+                                    android:textColorHint="@color/grey_40"
                                     app:endIconMode="password_toggle"
-                                    app:errorTextAppearance="@style/Error">
+                                    app:errorTextAppearance="@style/Error"
+
+                                    app:helperText="Codigo de 6 digitos"
+                                    app:startIconDrawable="@drawable/ic_lock">
 
                                     <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/etPassword"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:minEms="6"
+                                        android:inputType="numberPassword"
                                         android:maxLength="6"
-                                        android:inputType="numberPassword" />
+                                        android:minEms="6" />
                                 </com.google.android.material.textfield.TextInputLayout>
                             </LinearLayout>
 
@@ -303,19 +311,19 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:visibility="gone"
-                                android:orientation="horizontal">
+                                android:orientation="horizontal"
+                                android:visibility="gone">
 
                                 <com.google.android.material.textfield.TextInputLayout
                                     android:id="@+id/tilPassword2"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:textColorHint="@color/grey_40"
-                                    app:startIconDrawable="@drawable/ic_lock"
                                     android:hint="Confirmar contraseña"
-                                    app:helperText="Codigo de 6 digitos"
+                                    android:textColorHint="@color/grey_40"
                                     app:endIconMode="password_toggle"
-                                    app:errorTextAppearance="@style/Error">
+                                    app:errorTextAppearance="@style/Error"
+                                    app:helperText="Codigo de 6 digitos"
+                                    app:startIconDrawable="@drawable/ic_lock">
 
                                     <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/etPassword2"
@@ -367,8 +375,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:hint="Celular"
-                                    app:startIconDrawable="@drawable/ic_phone_android"
-                                    android:textColorHint="@color/grey_40">
+                                    android:textColorHint="@color/grey_40"
+                                    app:startIconDrawable="@drawable/ic_phone_android">
 
                                     <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/etCelular"
@@ -397,10 +405,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/spacing_middle"
                         android:layout_marginRight="@dimen/spacing_middle"
+                        android:visibility="gone"
                         app:cardBackgroundColor="@android:color/white"
                         app:cardCornerRadius="2dp"
-                        app:cardElevation="2dp"
-                        android:visibility="gone">
+                        app:cardElevation="2dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -427,8 +435,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="41dp"
                                 android:text="Acepto tratamiento de politicas de datos"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                                />
+                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead" />
 
                         </LinearLayout>
 
@@ -442,20 +449,18 @@
                         android:id="@+id/btnSignIn"
                         android:layout_width="match_parent"
                         android:layout_height="?attr/actionBarSize"
-                        android:text="Registrar Usuario"
                         android:layout_marginStart="15dp"
-                        android:layout_marginEnd="15dp"
                         android:layout_marginTop="5dp"
+                        android:layout_marginEnd="15dp"
                         android:onClick="registrarUsuario"
-                        android:textColor="@android:color/black"
-                        />
+                        android:text="Registrar Usuario"
+                        android:textColor="@android:color/black" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/spacing_large" />
 
                 </LinearLayout>
-
 
 
             </LinearLayout>

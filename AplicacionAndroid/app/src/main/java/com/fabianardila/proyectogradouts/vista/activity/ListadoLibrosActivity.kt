@@ -1,8 +1,10 @@
 package com.fabianardila.proyectogradouts.vista.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fabianardila.proyectogradouts.R
 import com.fabianardila.proyectogradouts.modelo.Categorias
@@ -14,9 +16,10 @@ import com.platzi.android.firestore.network.Callback
 import com.platzi.android.firestore.network.FirestoreService
 import com.platzi.android.firestore.network.RealtimeDataListener
 import kotlinx.android.synthetic.main.activity_listado_libros.*
-import java.lang.Exception
 
 class ListadoLibrosActivity : AppCompatActivity(), LibrosAdapterListener {
+
+    private val TAG = "ListadoLibrosActivity"
 
     lateinit var firestoreService: FirestoreService
 
@@ -56,32 +59,49 @@ class ListadoLibrosActivity : AppCompatActivity(), LibrosAdapterListener {
     private fun cargarLibros() {
         firestoreService.getLibros(object : Callback<List<Libro>> {
             override fun onSuccess(result: List<Libro>?) {
+                Log.d(TAG, "Consulta de libros exitosa")
                 addRealtimeDatabaseListener(result!!)
                 this@ListadoLibrosActivity.runOnUiThread {
-                    librosAdapter.librosList = result!!
+                    librosAdapter.librosList = result
                     librosAdapter.notifyDataSetChanged()
+                    if (result.isEmpty()) {
+                        imgNoData.visibility = View.VISIBLE
+                        tvNoData.visibility = View.VISIBLE
+                    }
                 }
             }
 
             override fun onFailed(exception: Exception) {
-                //TODO("Not yet implemented")
+                Log.d(TAG, "Error al encontrar libros")
+                this@ListadoLibrosActivity.runOnUiThread {
+                    imgNoData.visibility = View.VISIBLE
+                    tvNoData.visibility = View.VISIBLE
+                }
             }
-
         })
     }
 
     private fun cargarLibrosPorCategoria(categoria: String) {
         firestoreService.getLibrosByCategoria(categoria, object : Callback<List<Libro>> {
             override fun onSuccess(result: List<Libro>?) {
+                Log.d(TAG, "Consulta de libros exitosa por categorias")
                 addRealtimeDatabaseListener(result!!)
                 this@ListadoLibrosActivity.runOnUiThread {
-                    librosAdapter.librosList = result!!
+                    librosAdapter.librosList = result
                     librosAdapter.notifyDataSetChanged()
+                    if (result.isEmpty()) {
+                        imgNoData.visibility = View.VISIBLE
+                        tvNoData.visibility = View.VISIBLE
+                    }
                 }
             }
 
             override fun onFailed(exception: Exception) {
-                //TODO("Not yet implemented")
+                Log.d(TAG, "Error al encontrar libros por categorias")
+                this@ListadoLibrosActivity.runOnUiThread {
+                    imgNoData.visibility = View.VISIBLE
+                    tvNoData.visibility = View.VISIBLE
+                }
             }
 
         })
@@ -108,7 +128,6 @@ class ListadoLibrosActivity : AppCompatActivity(), LibrosAdapterListener {
     }
 
     override fun onClickLibroListener(libro: Libro) {
-        //TODO("Not yet implemented")
         val intent = Intent(this@ListadoLibrosActivity, LibroActivity::class.java)
         intent.putExtra("Libro", libro)
         startActivity(intent)

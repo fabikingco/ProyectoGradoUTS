@@ -2,6 +2,13 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:elevation="@dimen/spacing_medium"
+    app:cardElevation="@dimen/spacing_medium"
+    app:cardCornerRadius="@dimen/spacing_medium"
+    android:layout_marginBottom="@dimen/spacing_middle"
+    android:layout_marginLeft="@dimen/spacing_large"
+    android:layout_marginRight="@dimen/spacing_large"
+    android:layout_marginTop="@dimen/spacing_middle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -9,68 +16,104 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackground"
-        android:clickable="true"
         android:gravity="center_vertical"
         android:minHeight="70dp"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:paddingLeft="@dimen/spacing_large"
         android:paddingRight="@dimen/spacing_large">
 
-        <LinearLayout
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/tvNombre"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:paddingTop="@dimen/spacing_middle"
-            android:paddingBottom="@dimen/spacing_middle">
+            android:gravity="center"
+            android:layout_marginEnd="@dimen/spacing_middle"
+            android:layout_marginRight="@dimen/spacing_middle"
+            android:text="Nombre Nombre2 Apellido Apellido2"
+            android:lines="2"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+            android:textColor="@color/grey_90" />
 
-            <TextView
-                android:id="@+id/tvNombre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/spacing_middle"
-                android:layout_marginRight="@dimen/spacing_middle"
-                android:text="Nombre Nombre2 Apellido Apellido2"
-                android:lines="1"
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                android:textColor="@color/grey_90" />
+        <TextView
+            android:id="@+id/tvCorreo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:layout_marginEnd="@dimen/spacing_middle"
+            android:layout_marginRight="@dimen/spacing_middle"
+            android:maxLines="2"
+            android:text="correo@uts.edu.co"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/grey_40" />
 
-            <TextView
-                android:id="@+id/tvCorreo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_small"
-                android:layout_marginEnd="@dimen/spacing_middle"
-                android:layout_marginRight="@dimen/spacing_middle"
-                android:maxLines="2"
-                android:text="correo@uts.edu.co"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="@color/grey_40" />
-
-            <TextView
-                android:id="@+id/tvTipoUsuario"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_small"
-                android:layout_marginEnd="@dimen/spacing_middle"
-                android:layout_marginRight="@dimen/spacing_middle"
-                android:maxLines="2"
-                android:text="Estudiante"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="@color/grey_40" />
-
-        </LinearLayout>
+        <TextView
+            android:id="@+id/tvTipoUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:layout_marginEnd="@dimen/spacing_middle"
+            android:layout_marginRight="@dimen/spacing_middle"
+            android:maxLines="2"
+            android:text="Estudiante"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/grey_40" />
 
         <View
-            android:layout_width="@dimen/spacing_large"
-            android:layout_height="0dp" />
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_large" />
 
-        <ImageView
-            android:layout_width="@dimen/spacing_mxlarge"
-            android:layout_height="@dimen/spacing_mxlarge"
-            android:background="@android:color/transparent"
-            android:tint="@color/grey_60"
-            app:srcCompat="@drawable/ic_arrow_forward" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/clickRestaurar"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="@dimen/spacing_medium">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="RESTAURAR"
+                    android:layout_centerInParent="true"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/grey_20" />
+
+            <RelativeLayout
+                android:id="@+id/clickCambiarTipo"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:padding="@dimen/spacing_medium">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CAMBIAR TIPO"
+                    android:layout_centerInParent="true"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1" />
+
+            </RelativeLayout>
+        </LinearLayout>
 
     </LinearLayout>
 

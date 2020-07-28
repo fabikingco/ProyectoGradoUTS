@@ -4,5 +4,7 @@ import com.fabianardila.proyectogradouts.modelo.User
 
 
 interface UsuariosAdapterListener {
-    fun onClickUsuarioListener(user: User)
+    fun onClickRestaurar(user: User)
+
+    fun onClickCambiarTipo(user: User)
 }

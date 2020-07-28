@@ -1,11 +1,10 @@
 package com.fabianardila.proyectogradouts.vista.activity
 
 import android.content.Intent
-import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.os.Handler
+import android.widget.Toast
 import com.fabianardila.proyectogradouts.MainActivity
 import com.fabianardila.proyectogradouts.R
 import com.fabianardila.proyectogradouts.modelo.User
@@ -16,11 +15,12 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.platzi.android.firestore.network.Callback
 import com.platzi.android.firestore.network.FirestoreService
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_splash_screen.*
 import java.lang.Exception
 
-class LoginActivity : AppCompatActivity() {
+class SplashScreenActivity : AppCompatActivity() {
 
-    private val TAG = "LoginActivity"
+    private val TAG = "SplashScreenActivity"
 
     private var auth: FirebaseAuth = FirebaseAuth.getInstance()
 
@@ -28,34 +28,35 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_splash_screen)
+
         firestoreService = FirestoreService(FirebaseFirestore.getInstance())
-    }
 
-    fun btnRegistrarse(view: View) {
-        val intent = Intent(this@LoginActivity, RegistroActivity::class.java)
-        startActivity(intent)
-    }
+        supportActionBar?.hide()
 
-    override fun onStart() {
-        super.onStart()
         val currentUser= auth.currentUser
         updateUI(currentUser)
+
+        /*Handler().postDelayed({
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }, 3000)*/
     }
 
     private fun updateUI(currentUser: FirebaseUser?) {
         if (currentUser != null) {
             Snackbar.make(
-                btnIniciarSesion,
+                imgSplash,
                 currentUser.email.toString(),
                 Snackbar.LENGTH_LONG
             )
                 .setAction("Info", null).show()
 
-            firestoreService.findUserByEmail(currentUser.email.toString(), object : Callback<User>{
+            firestoreService.findUserByEmail(currentUser.email.toString(), object :
+                Callback<User> {
                 override fun onSuccess(result: User?) {
-                    //TODO("Not yet implemented")
-                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                    val intent = Intent(this@SplashScreenActivity, MainActivity::class.java)
                     intent.putExtra("user", result)
                     startActivity(intent)
                     finish()
@@ -63,28 +64,17 @@ class LoginActivity : AppCompatActivity() {
 
                 override fun onFailed(exception: Exception) {
                     //TODO("Not yet implemented")
-                    Toast.makeText(baseContext, "No encontre el usuario, Me quedo mal la sentencia",
-                        Toast.LENGTH_SHORT).show()
                 }
 
             })
+        } else {
+            Handler().postDelayed({
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }, 2000)
         }
-
     }
 
-    fun iniciarSesion(view: View) {
-        auth.signInWithEmailAndPassword(etCorreo.text.toString(), etPass.text.toString())
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    Log.d(TAG, "signInWithEmail:success")
-                    val user = auth.currentUser
-                    updateUI(user)
-                } else {
-                    Log.w(TAG, "signInWithEmail:failure", task.exception)
-                    Toast.makeText(baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT).show()
-                    updateUI(null)
-                }
-            }
-    }
+
 }

@@ -17,20 +17,27 @@ class MenuEstudiantesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_menu_estudiantes)
     }
 
+    fun clickVisualizarLibros(view: View) {
+        startActivity(Intent(this@MenuEstudiantesActivity, ListarCategoriasActivity::class.java))
+    }
+
+    fun clickMiPerfil(view: View) {
+        startActivity(Intent(this@MenuEstudiantesActivity, PerfilUsuarioActivity::class.java))
+    }
+
     fun clickCerrarSesion(view: View) {
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-        builder.setTitle("Discard draft ?")
+        builder.setTitle("Desea cerrar sesión?")
         builder.setPositiveButton(R.string.cerrar_sesion,
             DialogInterface.OnClickListener { dialogInterface, i ->
                 val mAuth = FirebaseAuth.getInstance()
                 mAuth.signOut()
                 startActivity(Intent(this@MenuEstudiantesActivity, LoginActivity::class.java))
+                finish()
             })
-        builder.setNegativeButton("Salir", null)
+        builder.setNegativeButton(getString(R.string.cancelar), null)
         builder.show()
     }
 
-    fun clickVisualizarLibros(view: View) {
-        startActivity(Intent(this@MenuEstudiantesActivity, ListarCategoriasActivity::class.java))
-    }
+
 }

@@ -64,12 +64,6 @@ public class ListarCategoriasActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_search) {
             startActivity(new Intent(this, SearchLibrosActivity.class));
-        } else if (item.getItemId() == R.id.action_sesion){
-            FirebaseAuth auth = FirebaseAuth.getInstance();
-            auth.signOut();
-            startActivity(new Intent(this, LoginActivity.class));
-            finish();
-            Toast.makeText(getApplicationContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getApplicationContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
         }

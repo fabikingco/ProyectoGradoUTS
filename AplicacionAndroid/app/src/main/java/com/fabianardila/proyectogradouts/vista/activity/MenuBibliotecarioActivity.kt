@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 class MenuBibliotecarioActivity : AppCompatActivity() {
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu_bibliotecario)
@@ -32,7 +33,7 @@ class MenuBibliotecarioActivity : AppCompatActivity() {
                 startActivity(Intent(this@MenuBibliotecarioActivity, LoginActivity::class.java))
                 finish()
             })
-        builder.setNegativeButton("Salir", null)
+        builder.setNegativeButton(getString(R.string.cancelar), null)
         builder.show()
     }
 }

@@ -4,9 +4,17 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@android:color/white"
+    android:background="@color/grey_10"
     android:orientation="vertical"
     tools:context=".vista.activity.ListadoLibrosActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/toolbar" />
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nested_content"
@@ -18,13 +26,14 @@
         android:scrollingCache="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:focusableInTouchMode="true"
             android:orientation="vertical">
 
             <RelativeLayout
+                android:id="@+id/rlImgTop"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -41,13 +50,33 @@
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_below="@+id/rlImgTop"
                 android:layout_marginTop="-30dp"
                 android:paddingLeft="@dimen/spacing_middle"
                 android:paddingRight="@dimen/spacing_middle"
                 android:scrollbars="vertical"
                 android:scrollingCache="true" />
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/tvNoData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_above="@+id/imgNoData"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                android:gravity="center"
+                android:text="No se han encontrado libros"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/imgNoData"
+                android:layout_width="wrap_content"
+                android:layout_height="380dp"
+                android:layout_alignParentBottom="true"
+                android:src="@drawable/bg_no_item_cactus"
+                android:visibility="gone"/>
+
+        </RelativeLayout>
 
     </androidx.core.widget.NestedScrollView>
 

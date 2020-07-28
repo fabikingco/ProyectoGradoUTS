@@ -126,7 +126,7 @@
                 android:layout_height="@dimen/spacing_mxlarge"
                 android:background="@android:color/transparent"
                 android:tint="@color/grey_60"
-                app:srcCompat="@drawable/ic_book" />
+                app:srcCompat="@drawable/ic_calendar" />
 
         </LinearLayout>
 
@@ -142,6 +142,7 @@
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
+            android:onClick="clickMiPerfil"
             android:gravity="center_vertical"
             android:minHeight="70dp"
             android:orientation="horizontal"
@@ -166,87 +167,7 @@
                 android:layout_height="@dimen/spacing_mxlarge"
                 android:background="@android:color/transparent"
                 android:tint="@color/grey_60"
-                app:srcCompat="@drawable/ic_book" />
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="@dimen/spacing_large"
-            android:layout_marginRight="@dimen/spacing_large"
-            android:background="@color/grey_10" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:gravity="center_vertical"
-            android:minHeight="70dp"
-            android:orientation="horizontal"
-            android:paddingLeft="@dimen/spacing_large"
-            android:paddingRight="@dimen/spacing_large">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="sans-serif-light"
-                android:text="Modificar usuario"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/grey_80" />
-
-            <View
-                android:layout_width="@dimen/spacing_large"
-                android:layout_height="wrap_content" />
-
-            <ImageView
-                android:layout_width="@dimen/spacing_mxlarge"
-                android:layout_height="@dimen/spacing_mxlarge"
-                android:background="@android:color/transparent"
-                android:tint="@color/grey_60"
-                app:srcCompat="@drawable/ic_home" />
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="@dimen/spacing_large"
-            android:layout_marginRight="@dimen/spacing_large"
-            android:background="@color/grey_10" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:gravity="center_vertical"
-            android:minHeight="70dp"
-            android:orientation="horizontal"
-            android:paddingLeft="@dimen/spacing_large"
-            android:paddingRight="@dimen/spacing_large">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="sans-serif-light"
-                android:text="Get help"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/grey_80" />
-
-            <View
-                android:layout_width="@dimen/spacing_large"
-                android:layout_height="wrap_content" />
-
-            <ImageView
-                android:layout_width="@dimen/spacing_mxlarge"
-                android:layout_height="@dimen/spacing_mxlarge"
-                android:background="@android:color/transparent"
-                android:tint="@color/grey_60"
-                app:srcCompat="@drawable/ic_book" />
+                app:srcCompat="@drawable/ic_account" />
 
         </LinearLayout>
 
