@@ -16,16 +16,13 @@ import android.widget.Toast;
 
 import com.fabianardila.proyectogradouts.modelo.Categorias;
 import com.fabianardila.proyectogradouts.vista.activity.ListadoLibrosActivity;
-import com.fabianardila.proyectogradouts.vista.activity.LoginActivity;
 import com.fabianardila.proyectogradouts.widget.SpacingItemDecoration;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.functions.FirebaseFunctions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +60,7 @@ public class ListarCategoriasActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_search) {
-            startActivity(new Intent(this, SearchLibrosActivity.class));
+            Toast.makeText(getApplicationContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getApplicationContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
         }

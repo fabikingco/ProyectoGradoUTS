@@ -12,9 +12,9 @@ import com.fabianardila.proyectogradouts.modelo.Libro
 import com.fabianardila.proyectogradouts.vista.adapter.LibrosAdapter
 import com.fabianardila.proyectogradouts.vista.adapter.LibrosAdapterListener
 import com.google.firebase.firestore.FirebaseFirestore
-import com.platzi.android.firestore.network.Callback
-import com.platzi.android.firestore.network.FirestoreService
-import com.platzi.android.firestore.network.RealtimeDataListener
+import com.fabianardila.proyectogradouts.network.Callback
+import com.fabianardila.proyectogradouts.network.FirestoreService
+import com.fabianardila.proyectogradouts.network.RealtimeDataListener
 import kotlinx.android.synthetic.main.activity_listado_libros.*
 
 class ListadoLibrosActivity : AppCompatActivity(), LibrosAdapterListener {
@@ -108,7 +108,7 @@ class ListadoLibrosActivity : AppCompatActivity(), LibrosAdapterListener {
     }
 
     private fun addRealtimeDatabaseListener(libroList: List<Libro>) {
-        firestoreService.listenForUpdates(libroList, object : RealtimeDataListener<Libro>{
+        firestoreService.listenForUpdates(libroList, object : RealtimeDataListener<Libro> {
             override fun onDataChange(updatedData: Libro) {
                 var pos = 0
                 for (libro in librosAdapter.librosList) {

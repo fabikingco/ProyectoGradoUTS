@@ -13,11 +13,10 @@ import com.fabianardila.proyectogradouts.R
 import com.fabianardila.proyectogradouts.modelo.User
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
-import com.platzi.android.firestore.network.Callback
-import com.platzi.android.firestore.network.FirestoreService
-import com.platzi.android.firestore.network.USER_COLECTION_NAME
+import com.fabianardila.proyectogradouts.network.Callback
+import com.fabianardila.proyectogradouts.network.FirestoreService
+import com.fabianardila.proyectogradouts.network.USER_COLECTION_NAME
 import kotlinx.android.synthetic.main.activity_registro.*
 import java.lang.Exception
 

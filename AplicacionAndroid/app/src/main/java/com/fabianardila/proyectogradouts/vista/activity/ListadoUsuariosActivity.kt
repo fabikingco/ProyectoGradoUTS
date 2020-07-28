@@ -1,6 +1,5 @@
 package com.fabianardila.proyectogradouts.vista.activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -9,13 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fabianardila.proyectogradouts.R
-import com.fabianardila.proyectogradouts.SearchLibrosActivity
 import com.fabianardila.proyectogradouts.modelo.User
 import com.fabianardila.proyectogradouts.vista.adapter.UsuariosAdapter
 import com.fabianardila.proyectogradouts.vista.adapter.UsuariosAdapterListener
 import com.google.firebase.firestore.FirebaseFirestore
-import com.platzi.android.firestore.network.Callback
-import com.platzi.android.firestore.network.FirestoreService
+import com.fabianardila.proyectogradouts.network.Callback
+import com.fabianardila.proyectogradouts.network.FirestoreService
 import kotlinx.android.synthetic.main.activity_listado_usuarios.*
 
 class ListadoUsuariosActivity : AppCompatActivity(), UsuariosAdapterListener {

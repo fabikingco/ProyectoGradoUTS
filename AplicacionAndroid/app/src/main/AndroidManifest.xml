@@ -22,9 +22,6 @@
         <activity android:name=".vista.activity.LibroActivity" />
         <activity android:name=".vista.activity.ListadoLibrosActivity" />
         <activity android:name=".vista.activity.RegistroActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".SearchLibrosActivity" />
-        <activity android:name=".ListTabsSubCategoriasActivity" />
         <activity android:name=".ListarCategoriasActivity" />
         <activity android:name=".vista.activity.LoginActivity" />
         <activity android:name=".vista.activity.SplashScreenActivity">

@@ -27,14 +27,149 @@
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_xlarge" />
+
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Nombre y apellido"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:textColor="@color/grey_60" />
+
+            <TextView
+                android:id="@+id/tvUserNombreApellido"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_xlarge"
-                android:text="James Pratterson"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"
+                android:lines="2"
+                android:paddingStart="@dimen/spacing_xmedium"
+                android:paddingEnd="@dimen/spacing_xmedium"
+                android:text="James Pratterson Gonzalez Gonzalez"
+                android:textAppearance="?attr/textAppearanceHeadline4"
                 android:textColor="@color/grey_90" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_large" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Correo electronico"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:textColor="@color/grey_60" />
+
+            <TextView
+                android:id="@+id/tvUserCorreo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"
+                android:lines="2"
+                android:paddingStart="@dimen/spacing_xmedium"
+                android:paddingEnd="@dimen/spacing_xmedium"
+                android:text="xxxxxx@uts.edu.co"
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textColor="@color/grey_90" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_large" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Programa academico"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:textColor="@color/grey_60" />
+
+            <TextView
+                android:id="@+id/tvUserProgramaAcademico"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"
+                android:lines="2"
+                android:paddingStart="@dimen/spacing_xmedium"
+                android:paddingEnd="@dimen/spacing_xmedium"
+                android:text="Tecnología en Implementación de Sistemas Electrónicos Industriales"
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textColor="@color/grey_90" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_large" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Documento de identidad"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:textColor="@color/grey_60" />
+
+            <TextView
+                android:id="@+id/tvUserDocumento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"
+                android:lines="1"
+                android:text="XXXXXXXXX"
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textColor="@color/grey_90" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_large" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Número de telefono"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:textColor="@color/grey_60" />
+
+            <TextView
+                android:id="@+id/tvUserTelefono"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"
+                android:lines="1"
+                android:text="XXXXXXXXX"
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textColor="@color/grey_90" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_large" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Tipo de usuario"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:textColor="@color/grey_60" />
+
+            <TextView
+                android:id="@+id/tvUserTipoUsuario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"
+                android:lines="1"
+                android:text="XXXXXXXXX"
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textColor="@color/grey_90" />
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
@@ -44,8 +179,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/spacing_smlarge"
-        android:text="Editrar Usuario"
+        android:text="Editar Usuario"
         app:icon="@drawable/ic_edit"
+        android:backgroundTint="@color/colorPrimary"
         />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

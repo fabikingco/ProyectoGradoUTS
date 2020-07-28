@@ -1,22 +1,18 @@
 package com.fabianardila.proyectogradouts.vista.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.widget.Toast
-import com.fabianardila.proyectogradouts.MainActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.fabianardila.proyectogradouts.R
 import com.fabianardila.proyectogradouts.modelo.User
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
-import com.platzi.android.firestore.network.Callback
-import com.platzi.android.firestore.network.FirestoreService
-import kotlinx.android.synthetic.main.activity_login.*
+import com.fabianardila.proyectogradouts.network.Callback
+import com.fabianardila.proyectogradouts.network.FirestoreService
 import kotlinx.android.synthetic.main.activity_splash_screen.*
-import java.lang.Exception
 
 class SplashScreenActivity : AppCompatActivity() {
 
@@ -56,10 +52,7 @@ class SplashScreenActivity : AppCompatActivity() {
             firestoreService.findUserByEmail(currentUser.email.toString(), object :
                 Callback<User> {
                 override fun onSuccess(result: User?) {
-                    val intent = Intent(this@SplashScreenActivity, MainActivity::class.java)
-                    intent.putExtra("user", result)
-                    startActivity(intent)
-                    finish()
+                    ingresar(result)
                 }
 
                 override fun onFailed(exception: Exception) {
@@ -73,6 +66,20 @@ class SplashScreenActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }, 2000)
+        }
+    }
+
+    private fun ingresar(user: User?) {
+        if (user != null && user.bibliotecario) {
+            val intent = Intent(this@SplashScreenActivity, MenuBibliotecarioActivity::class.java)
+            intent.putExtra("user", user)
+            startActivity(intent)
+            finish()
+        } else {
+            val intent = Intent(this@SplashScreenActivity, MenuEstudiantesActivity::class.java)
+            intent.putExtra("user", user)
+            startActivity(intent)
+            finish()
         }
     }
 

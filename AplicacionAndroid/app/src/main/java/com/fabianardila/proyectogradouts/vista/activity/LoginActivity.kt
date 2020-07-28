@@ -6,15 +6,14 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.fabianardila.proyectogradouts.MainActivity
 import com.fabianardila.proyectogradouts.R
 import com.fabianardila.proyectogradouts.modelo.User
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
-import com.platzi.android.firestore.network.Callback
-import com.platzi.android.firestore.network.FirestoreService
+import com.fabianardila.proyectogradouts.network.Callback
+import com.fabianardila.proyectogradouts.network.FirestoreService
 import kotlinx.android.synthetic.main.activity_login.*
 import java.lang.Exception
 
@@ -52,13 +51,9 @@ class LoginActivity : AppCompatActivity() {
             )
                 .setAction("Info", null).show()
 
-            firestoreService.findUserByEmail(currentUser.email.toString(), object : Callback<User>{
+            firestoreService.findUserByEmail(currentUser.email.toString(), object : Callback<User> {
                 override fun onSuccess(result: User?) {
-                    //TODO("Not yet implemented")
-                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                    intent.putExtra("user", result)
-                    startActivity(intent)
-                    finish()
+                    ingresar(result)
                 }
 
                 override fun onFailed(exception: Exception) {
@@ -86,5 +81,19 @@ class LoginActivity : AppCompatActivity() {
                     updateUI(null)
                 }
             }
+    }
+
+    private fun ingresar(user: User?) {
+        if (user != null && user.bibliotecario) {
+            val intent = Intent(this@LoginActivity, MenuBibliotecarioActivity::class.java)
+            intent.putExtra("user", user)
+            startActivity(intent)
+            finish()
+        } else {
+            val intent = Intent(this@LoginActivity, MenuEstudiantesActivity::class.java)
+            intent.putExtra("user", user)
+            startActivity(intent)
+            finish()
+        }
     }
 }
