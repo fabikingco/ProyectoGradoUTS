@@ -15,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".vista.activity.MenuBibliotecarioActivity"></activity>
+        <activity android:name=".vista.activity.MenuEstudiantesActivity"></activity>
+        <activity android:name=".vista.activity.ListadoUsuariosActivity" />
+        <activity android:name=".vista.activity.MenuBibliotecarioActivity" />
         <activity android:name=".vista.activity.LibroActivity" />
         <activity android:name=".vista.activity.ListadoLibrosActivity" />
         <activity android:name=".vista.activity.RegistroActivity" />
@@ -24,7 +26,6 @@
         <activity android:name=".SearchLibrosActivity" />
         <activity android:name=".ListTabsSubCategoriasActivity" />
         <activity android:name=".ListarCategoriasActivity" />
-        <activity android:name=".MenuBibliotecario" />
         <activity android:name=".LoginBibliotecarioActivity" />
         <activity android:name=".vista.activity.LoginActivity">
             <intent-filter>

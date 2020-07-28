@@ -57,6 +57,21 @@ class FirestoreService(val firebaseFirestore: FirebaseFirestore) {
         }
     }
 
+    fun getUsuarios(callback: Callback<List<User>>?) {
+        firebaseFirestore.collection(USER_COLECTION_NAME)
+            .get()
+            .addOnSuccessListener { result ->
+                for (documment in result) {
+                    val userList = result.toObjects(User::class.java)
+                    callback!!.onSuccess(userList)
+                    break
+                }
+            }
+            .addOnFailureListener { exception ->
+                callback!!.onFailed(exception)
+            }
+    }
+
     fun findUserByEmail(email: String, callback: Callback<User>) {
         firebaseFirestore.collection(USER_COLECTION_NAME)
             .whereEqualTo("correo", email)
