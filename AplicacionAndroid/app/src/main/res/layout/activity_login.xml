@@ -103,7 +103,7 @@
                     android:id="@+id/etPass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"
+                    android:inputType="numberPassword"
                     android:maxLines="1"
                     android:textColor="@android:color/black"
                     android:theme="@style/EditText.Grey"

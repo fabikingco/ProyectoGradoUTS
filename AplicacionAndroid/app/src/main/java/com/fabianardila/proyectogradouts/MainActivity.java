@@ -15,6 +15,7 @@ import com.fabianardila.proyectogradouts.modelo.User;
 import com.fabianardila.proyectogradouts.vista.activity.LibroActivity;
 import com.fabianardila.proyectogradouts.vista.activity.ListadoLibrosActivity;
 import com.fabianardila.proyectogradouts.vista.activity.MenuBibliotecarioActivity;
+import com.fabianardila.proyectogradouts.vista.activity.MenuEstudiantesActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         if (user != null && user.getBibliotecario()) {
             startActivity(new Intent(this, MenuBibliotecarioActivity.class));
         } else {
-            startActivity(new Intent(this, ListarCategoriasActivity.class));
+            startActivity(new Intent(this, MenuEstudiantesActivity.class));
         }
         finish();
         initToolbar();
