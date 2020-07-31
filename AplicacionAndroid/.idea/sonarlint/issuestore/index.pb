@@ -55,3 +55,9 @@ _app/src/main/java/com/fabianardila/proyectogradouts/vista/activity/MenuBibliote
 Sapp/src/main/java/com/fabianardila/proyectogradouts/vista/activity/AboutActivity.kt,5\9\59c76d44735230492f2f604caf8f64d605e565a6
 ç
 ]app/src/main/java/com/fabianardila/proyectogradouts/vista/activity/MenuEstudiantesActivity.kt,f\8\f83224e2d6745933d5b15c170df126e54c6d9159
+â
+Yapp/src/main/java/com/fabianardila/proyectogradouts/vista/activity/BuscarLibroActivity.kt,c\3\c39f46318f4a0a04e529ff11b06ac343385d3888
+ã
+[app/src/main/java/com/fabianardila/proyectogradouts/vista/activity/BuscarUsuarioActivity.kt,0\3\035cabbe6922dc87b84303663d597a9bfb290cdc
+ã
+[app/src/main/java/com/fabianardila/proyectogradouts/vista/activity/EditarUsuarioActivity.kt,f\7\f78fd358f705dae41dbb8e93b2641ca310a605ef

@@ -1,7 +1,9 @@
 package com.fabianardila.proyectogradouts.vista.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.widget.Toolbar
 import com.fabianardila.proyectogradouts.R
 import com.fabianardila.proyectogradouts.modelo.User
@@ -35,5 +37,11 @@ class PerfilUsuarioActivity : AppCompatActivity() {
             findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar!!.title = "Mi perfil"
+    }
+
+    fun clickEditarUsuario(view: View) {
+        val intent = Intent(this, EditarUsuarioActivity::class.java)
+        intent.putExtra("user", user)
+        startActivity(intent)
     }
 }

@@ -122,6 +122,21 @@ class FirestoreService(val firebaseFirestore: FirebaseFirestore) {
             .addOnFailureListener { exception -> callback!!.onFailed(exception) }
     }
 
+    fun updateUser(user: User, callback: Callback<User>?) {
+        firebaseFirestore.collection(USER_COLECTION_NAME)
+            .document(user.id)
+            .update(mapOf(
+                "nombre" to user.nombre,
+                "apellido" to user.apellido,
+                "programaAcademico" to user.programaAcademico,
+                "celular" to user.celular
+            ))
+            .addOnSuccessListener {
+                callback?.onSuccess(user)
+            }
+            .addOnFailureListener { exception -> callback!!.onFailed(exception) }
+    }
+
     /*fun updateUser(user: User, callback: Callback<User>?) {
         firebaseFirestore.collection(USER_COLECTION_NAME)
             .document(user.username)

@@ -101,7 +101,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Desarrollado por \nFabian Guillermo Ardila Castro"
+                android:text="Desarrollado por \nFabian Guillermo Ardila Castro \nDiego Fernando Ardila Zafra"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/grey_90" />
 
@@ -112,7 +112,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="https://www.code93.com/fgardila"
+                android:text="fgardila@uts.edu.co \ndfardila@uts.edu.co"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/grey_90" />
 

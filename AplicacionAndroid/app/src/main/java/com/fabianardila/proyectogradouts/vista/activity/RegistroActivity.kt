@@ -57,9 +57,9 @@ class RegistroActivity : AppCompatActivity() {
             tilNombre.error = "Campo requerido"
         }
 
-        if (etNombre.text.toString().isEmpty()) {
+        if (etApellidos.text.toString().isEmpty()) {
             isCompleteData = false
-            tilNombre.error = "Campo requerido"
+            tilApellidos.error = "Campo requerido"
         }
 
         if (etCedula.text.toString().isEmpty()) {
@@ -138,7 +138,6 @@ class RegistroActivity : AppCompatActivity() {
     }
 
     fun listaProgramasAcademicos(view: View) {
-
         val arrayAdapter = ArrayAdapter.createFromResource(
             this,
             R.array.ProgramasAcademicos,
