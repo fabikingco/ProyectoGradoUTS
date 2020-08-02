@@ -66,14 +66,30 @@
             android:padding="@dimen/spacing_large">
 
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Titulo"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:textColor="@color/grey_60" />
+
+            <TextView
                 android:id="@+id/tvTitleLibro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_small"
-                android:text="CALCULO MULTI"
+                android:text="TITULO TITULO"
                 android:textAppearance="?attr/textAppearanceHeadline5"
                 android:textColor="@color/grey_90"
                 app:fontFamily="sans-serif-medium" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Autores"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:textColor="@color/grey_60" />
 
             <TextView
                 android:id="@+id/tvAutoresLibro"
@@ -86,14 +102,48 @@
                 app:fontFamily="sans-serif-medium" />
 
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Codigo Interno"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:textColor="@color/grey_60" />
+
+            <TextView
+                android:id="@+id/tvId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:text="XXXXXXXX"
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textColor="@color/grey_80"
+                app:fontFamily="sans-serif-medium" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Edicion"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:textColor="@color/grey_60" />
+
+            <TextView
                 android:id="@+id/tvEdicionLibro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_small"
                 android:text="Edicion tercera"
-                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:textAppearance="?attr/textAppearanceHeadline6"
                 android:textColor="@color/grey_80"
                 app:fontFamily="sans-serif-medium" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Fecha de publicacion"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:textColor="@color/grey_60" />
 
             <TextView
                 android:id="@+id/tvFechaPublicacionLibro"
@@ -101,9 +151,23 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_small"
                 android:text="2011"
-                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:textAppearance="?attr/textAppearanceHeadline6"
                 android:textColor="@color/grey_80"
                 app:fontFamily="sans-serif-medium" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="Unidades"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:textColor="@color/grey_60" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

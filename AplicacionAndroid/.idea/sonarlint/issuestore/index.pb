@@ -61,3 +61,5 @@ Yapp/src/main/java/com/fabianardila/proyectogradouts/vista/activity/BuscarLibroA
 [app/src/main/java/com/fabianardila/proyectogradouts/vista/activity/BuscarUsuarioActivity.kt,0\3\035cabbe6922dc87b84303663d597a9bfb290cdc
 ‹
 [app/src/main/java/com/fabianardila/proyectogradouts/vista/activity/EditarUsuarioActivity.kt,f\7\f78fd358f705dae41dbb8e93b2641ca310a605ef
+ˆ
+Xapp/src/main/java/com/fabianardila/proyectogradouts/vista/adapter/LibrosStatusAdapter.kt,5\b\5b62b1ddb898c0c8dbcf52fc8df36e715ba32ec1

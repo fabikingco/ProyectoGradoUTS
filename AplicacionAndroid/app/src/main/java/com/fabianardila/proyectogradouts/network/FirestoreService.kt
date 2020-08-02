@@ -70,6 +70,18 @@ class FirestoreService(val firebaseFirestore: FirebaseFirestore) {
         }
     }
 
+    fun listenForUpdatesLibro(libro: Libro, listener: RealtimeDataListener<Libro>) {
+        val libroReference = firebaseFirestore.collection(LIBROS_COLECTION_NAME)
+        libroReference.document(libro.id!!).addSnapshotListener{snapshot, e ->
+            if (e != null) {
+                listener.onError(e)
+            }
+            if (snapshot != null && snapshot.exists()) {
+                listener.onDataChange(snapshot.toObject(Libro::class.java)!!)
+            }
+        }
+    }
+
     fun getUsuarios(callback: Callback<List<User>>?) {
         firebaseFirestore.collection(USER_COLECTION_NAME)
             .get()
