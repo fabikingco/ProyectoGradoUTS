@@ -36,7 +36,6 @@ class LibrosAdapter (val librosAdapterListener: LibrosAdapterListener):
     }
 
     class ViewHolder (view: View): RecyclerView.ViewHolder(view) {
-        //TODO(Se instancian los elementos del item)
         var imageLibros = view.findViewById<ImageView>(R.id.imageLibros)
         var tituloLibro = view.findViewById<TextView>(R.id.tituloLibro)
         var autorLibro = view.findViewById<TextView>(R.id.autorLibro)
