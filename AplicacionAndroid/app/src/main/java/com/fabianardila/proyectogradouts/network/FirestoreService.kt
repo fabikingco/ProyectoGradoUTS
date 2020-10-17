@@ -1,16 +1,30 @@
 package com.fabianardila.proyectogradouts.network
 
-import com.fabianardila.proyectogradouts.modelo.Libro
-import com.fabianardila.proyectogradouts.modelo.User
+import com.fabianardila.proyectogradouts.modelo.*
 import com.google.firebase.firestore.FirebaseFirestore
 
 const val LIBROS_COLECTION_NAME = "libros"
 const val USER_COLECTION_NAME = "users"
+const val CATEGORIA_COLECCION_NAME = "categoriasDeLibros"
+const val RESERVAS_COLECCION_NAME = "reservas"
 
 class FirestoreService(val firebaseFirestore: FirebaseFirestore) {
 
     fun setDocument(data: Any, collectionName: String, id: String, callback: Callback<Void>) {
         firebaseFirestore.collection(collectionName).document(id).set(data)
+            .addOnSuccessListener { callback.onSuccess(result = null) }
+            .addOnFailureListener { exception -> callback.onFailed(exception) }
+    }
+
+    fun setReserva(data: Reservas, callback: Callback<Void>) {
+        firebaseFirestore.collection(RESERVAS_COLECCION_NAME).add(data)
+            .addOnSuccessListener { callback.onSuccess(result = null) }
+            .addOnFailureListener { exception -> callback.onFailed(exception) }
+    }
+
+    fun deleteReserva(data: Reservas, callback: Callback<Void>) {
+        firebaseFirestore.collection(RESERVAS_COLECCION_NAME).document(data.idDocument)
+            .delete()
             .addOnSuccessListener { callback.onSuccess(result = null) }
             .addOnFailureListener { exception -> callback.onFailed(exception) }
     }
@@ -82,6 +96,16 @@ class FirestoreService(val firebaseFirestore: FirebaseFirestore) {
         }
     }
 
+    fun updateStatusLibro(libro: Libro, listStatus: List<Status>, callback: Callback<Void>) {
+        firebaseFirestore.collection(LIBROS_COLECTION_NAME)
+            .document(libro.id!!)
+            .update("status", listStatus)
+            .addOnSuccessListener {
+                callback.onSuccess(it)
+            }
+            .addOnFailureListener { exception -> callback!!.onFailed(exception) }
+    }
+
     fun getUsuarios(callback: Callback<List<User>>?) {
         firebaseFirestore.collection(USER_COLECTION_NAME)
             .get()
@@ -147,6 +171,41 @@ class FirestoreService(val firebaseFirestore: FirebaseFirestore) {
                 callback?.onSuccess(user)
             }
             .addOnFailureListener { exception -> callback!!.onFailed(exception) }
+    }
+
+    fun getCategorias(callback: Callback<List<Categoria>>) {
+        val categoriaList = mutableListOf<Categoria>()
+        val categoriaTodos = Categoria("1000", "TODOS")
+        categoriaList.add(categoriaTodos)
+        firebaseFirestore.collection(CATEGORIA_COLECCION_NAME)
+            .get()
+            .addOnSuccessListener { result ->
+                for (documment in result) {
+                    categoriaList.add(documment.toObject(Categoria::class.java))
+                }
+                callback.onSuccess(categoriaList)
+            }
+            .addOnFailureListener { exception ->
+                callback.onFailed(exception)
+            }
+    }
+
+    fun getReservasByUser(mailUser: String, callback: Callback<List<Reservas>>?) {
+        firebaseFirestore.collection(RESERVAS_COLECCION_NAME)
+            .whereEqualTo("mailUser", mailUser)
+            .get()
+            .addOnSuccessListener { documents ->
+                val reservasList: MutableList<Reservas> = mutableListOf()
+                for (document in documents){
+                    val reserva = document.toObject(Reservas::class.java)
+                    reserva.idDocument = document.id
+                    reservasList.add(reserva)
+                }
+                callback!!.onSuccess(reservasList)
+            }
+            .addOnFailureListener { exception ->
+                callback!!.onFailed(exception)
+            }
     }
 
     /*fun updateUser(user: User, callback: Callback<User>?) {

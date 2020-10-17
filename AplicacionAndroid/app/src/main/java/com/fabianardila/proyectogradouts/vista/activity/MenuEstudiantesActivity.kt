@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
-import com.fabianardila.proyectogradouts.ListarCategoriasActivity
 import com.fabianardila.proyectogradouts.R
 import com.fabianardila.proyectogradouts.modelo.User
 import com.google.firebase.auth.FirebaseAuth
@@ -29,7 +28,7 @@ class MenuEstudiantesActivity : AppCompatActivity() {
     }
 
     fun clickVisualizarLibros(view: View) {
-        startActivity(Intent(this@MenuEstudiantesActivity, ListarCategoriasActivity::class.java))
+        startActivity(Intent(this@MenuEstudiantesActivity, ListadoCategoriasActivity::class.java))
     }
 
     fun clickMiPerfil(view: View) {
@@ -69,6 +68,10 @@ class MenuEstudiantesActivity : AppCompatActivity() {
 
     fun clickSobreNosotros(view: View) {
         startActivity(Intent(this@MenuEstudiantesActivity, AboutActivity::class.java))
+    }
+
+    fun clickReservasEstudiante(view: View) {
+        startActivity(Intent(this@MenuEstudiantesActivity, ReservasEstudianteActivity::class.java))
     }
 
 

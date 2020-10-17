@@ -15,18 +15,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".vista.activity.EditarUsuarioActivity"></activity>
+        <activity android:name=".vista.activity.ReservasEstudianteActivity"></activity>
+        <activity android:name=".vista.activity.EditarUsuarioActivity" />
         <activity android:name=".vista.activity.BuscarUsuarioActivity" />
         <activity android:name=".vista.activity.BuscarLibroActivity" />
         <activity android:name=".vista.activity.AboutActivity" />
         <activity android:name=".vista.activity.PerfilUsuarioActivity" />
         <activity android:name=".vista.activity.MenuEstudiantesActivity" />
         <activity android:name=".vista.activity.ListadoUsuariosActivity" />
+        <activity android:name=".vista.activity.ListadoCategoriasActivity" />
         <activity android:name=".vista.activity.MenuBibliotecarioActivity" />
         <activity android:name=".vista.activity.LibroActivity" />
         <activity android:name=".vista.activity.ListadoLibrosActivity" />
         <activity android:name=".vista.activity.RegistroActivity" />
-        <activity android:name=".ListarCategoriasActivity" />
         <activity android:name=".vista.activity.LoginActivity" />
         <activity android:name=".vista.activity.SplashScreenActivity">
             <intent-filter>

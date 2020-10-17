@@ -10,12 +10,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.fabianardila.proyectogradouts.R
 import com.fabianardila.proyectogradouts.modelo.Libro
+import com.fabianardila.proyectogradouts.modelo.Status
 import com.google.common.base.Ascii.toLowerCase
 import com.squareup.picasso.Picasso
 
 class LibrosStatusAdapter (): RecyclerView.Adapter<LibrosStatusAdapter.ViewHolder>(){
 
-    var librosStatusList: List<Map<String, String>> = ArrayList()
+    var librosStatusList: List<Status> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_libro_status, parent, false)
@@ -28,22 +29,21 @@ class LibrosStatusAdapter (): RecyclerView.Adapter<LibrosStatusAdapter.ViewHolde
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val libroStatus = librosStatusList[position]
-        val status = libroStatus["status"]
+        val status = libroStatus.status
         when {
-            toLowerCase(status!!) == "disponible" -> {
-                holder.colorBackIconStatus.setColorFilter(Color.rgb(193,8,207))
+            toLowerCase(status) == "disponible" -> {
+                holder.colorBackIconStatus.setColorFilter(Color.rgb(0,255,0))
             }
             toLowerCase(status) == "prestado" -> {
-                holder.colorBackIconStatus.setColorFilter(Color.rgb(200,8,207))
+                holder.colorBackIconStatus.setColorFilter(Color.rgb(255,0,0))
             }
             toLowerCase(status) == "reservado" -> {
-                holder.colorBackIconStatus.setColorFilter(Color.rgb(155,8,222))
+                holder.colorBackIconStatus.setColorFilter(Color.rgb(255,140,0))
             }
         }
         holder.tvStatus.text = status
-        holder.tvFechaRegresoStatus.text = libroStatus["fechaRegreso"]
-        holder.codigoLibroStatus.text = "Codiigo: " + libroStatus["libroId"]
-
+        holder.tvFechaRegresoStatus.text = libroStatus.fechaRegreso
+        holder.codigoLibroStatus.text = "Codigo: " + libroStatus.libroId
     }
 
     class ViewHolder (view: View): RecyclerView.ViewHolder(view) {

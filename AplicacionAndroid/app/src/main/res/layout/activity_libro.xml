@@ -172,18 +172,18 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fabLibro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/spacing_mlarge"
-        android:clickable="true"
         android:onClick="clickFabLibro"
         android:tint="@android:color/white"
         android:backgroundTint="@color/amber_700"
-        app:fabSize="normal"
+        app:icon="@drawable/ic_add"
         app:layout_anchor="@id/app_bar_layout"
         app:layout_anchorGravity="bottom|right|end"
-        android:src="@drawable/ic_add"/>
+        android:text="RESERVAR"
+        />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

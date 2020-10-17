@@ -85,7 +85,7 @@
                 android:layout_width="@dimen/spacing_mxlarge"
                 android:layout_height="@dimen/spacing_mxlarge"
                 android:background="@android:color/transparent"
-                android:tint="@color/grey_60"
+                app:tint="@color/grey_60"
                 app:srcCompat="@drawable/ic_book" />
 
         </LinearLayout>
@@ -102,6 +102,7 @@
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
+            android:onClick="clickReservasEstudiante"
             android:gravity="center_vertical"
             android:minHeight="70dp"
             android:orientation="horizontal"
@@ -125,7 +126,7 @@
                 android:layout_width="@dimen/spacing_mxlarge"
                 android:layout_height="@dimen/spacing_mxlarge"
                 android:background="@android:color/transparent"
-                android:tint="@color/grey_60"
+                app:tint="@color/grey_60"
                 app:srcCompat="@drawable/ic_calendar" />
 
         </LinearLayout>
@@ -166,7 +167,7 @@
                 android:layout_width="@dimen/spacing_mxlarge"
                 android:layout_height="@dimen/spacing_mxlarge"
                 android:background="@android:color/transparent"
-                android:tint="@color/grey_60"
+                app:tint="@color/grey_60"
                 app:srcCompat="@drawable/ic_account" />
 
         </LinearLayout>
@@ -207,7 +208,7 @@
                 android:layout_width="@dimen/spacing_mxlarge"
                 android:layout_height="@dimen/spacing_mxlarge"
                 android:background="@android:color/transparent"
-                android:tint="@color/grey_60"
+                app:tint="@color/grey_60"
                 app:srcCompat="@drawable/ic_exit_to_app" />
 
         </LinearLayout>
@@ -248,7 +249,7 @@
                 android:layout_width="@dimen/spacing_mxlarge"
                 android:layout_height="@dimen/spacing_mxlarge"
                 android:background="@android:color/transparent"
-                android:tint="@color/grey_60"
+                app:tint="@color/grey_60"
                 app:srcCompat="@drawable/ic_info" />
 
         </LinearLayout>

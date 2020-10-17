@@ -15,7 +15,7 @@ class Libro : Serializable{
     var categoria: String? = null
     var disponibles = 0
     var imageUrl: String? = null
-    var status: List<Map<String, String>>? = null
+    var status: List<Status>? = null
 
     constructor(
         id: String?,
@@ -29,7 +29,7 @@ class Libro : Serializable{
         categoria: String?,
         disponibles: Int,
         imageUrl: String?,
-        status: List<Map<String, String>>?
+        status: List<Status>?
     ) {
         this.id = id
         this.titulo = titulo
