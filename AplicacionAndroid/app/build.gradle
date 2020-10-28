@@ -4,6 +4,15 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
 
 android {
+    signingConfigs {
+        firmaCode93 {
+            storeFile file('C:\\AndroidProjects\\Code93\\KeyCode93\\KeyCode93.jks')
+            keyAlias 'key0'
+            storePassword 'Code93qa12pl09*'
+            keyPassword 'Code93qa12pl09*'
+        }
+    }
+
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
 
@@ -18,10 +27,9 @@ android {
     }
 
     buildTypes {
-
         release {
-            
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

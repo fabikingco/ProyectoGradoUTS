@@ -40,4 +40,12 @@ class MenuBibliotecarioActivity : AppCompatActivity() {
     fun clickSobreNosotros(view: View) {
         startActivity(Intent(this@MenuBibliotecarioActivity, AboutActivity::class.java))
     }
+
+    fun clickBucarReservas(view: View) {
+        startActivity(Intent(this@MenuBibliotecarioActivity, BuscarReservasActivity::class.java))
+    }
+
+    fun clickAgregarLibro(view: View) {
+        startActivity(Intent(this@MenuBibliotecarioActivity, CrearLibroActivity::class.java))
+    }
 }

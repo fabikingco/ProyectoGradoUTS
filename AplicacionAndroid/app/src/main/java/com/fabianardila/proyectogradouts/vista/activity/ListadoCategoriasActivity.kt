@@ -3,6 +3,8 @@ package com.fabianardila.proyectogradouts.vista.activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -68,6 +70,20 @@ class ListadoCategoriasActivity : AppCompatActivity(), CategoriasAdapter.ClickCa
             findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar!!.title = "Categorias de libros"
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_principal_no_login, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.action_search) {
+            startActivity(Intent(this@ListadoCategoriasActivity, BuscarUsuarioActivity::class.java))
+        } else {
+            Toast.makeText(applicationContext, item.title, Toast.LENGTH_SHORT).show()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onClickCategoriaListener(categoria: Categoria) {

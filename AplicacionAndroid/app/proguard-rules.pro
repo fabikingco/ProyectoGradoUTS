@@ -22,3 +22,42 @@
 -keep class dmax.dialog.** {
     *;
 }
+
+-dontwarn com.firebase.**
+-keep class com.firebase.** { *; }
+
+# Add this global rule
+-keepattributes Signature
+
+-keepclassmembers class com.fabianardila.proyectogradouts.modelo.**{
+  *;
+}
+
+-keepclassmembers class com.fabianardila.proyectogradouts.modelo.Categoria{
+  *;
+}
+-keepclassmembers class com.fabianardila.proyectogradouts.modelo.Libro{
+  *;
+}
+-keepclassmembers class com.fabianardila.proyectogradouts.modelo.Reservas{
+  *;
+}
+-keepclassmembers class com.fabianardila.proyectogradouts.modelo.Status{
+  *;
+}
+-keepclassmembers class com.fabianardila.proyectogradouts.modelo.User{
+  *;
+}
+
+-keepattributes SourceFile,LineNumberTable        # Keep file names and line numbers.
+-keep public class * extends java.lang.Exception  # Optional: Keep custom exceptions.
+-keep class com.google.firebase.crashlytics.* { *; }
+-dontwarn com.google.firebase.crashlytics.**
+
+# Security classes for keystore support
+-dontwarn java.awt.**, javax.security.**, java.beans.**
+
+-keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}

@@ -1,6 +1,7 @@
 package com.fabianardila.proyectogradouts.vista.activity
 
 import android.app.AlertDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -160,7 +161,7 @@ class LibroActivity : AppCompatActivity() {
             .setCancelable(false)
             .setPositiveButton("Aceptar") { dialog, which ->
                 dialog.dismiss()
-                onBackPressed()
+                startActivity(Intent(this@LibroActivity, MenuEstudiantesActivity::class.java))
             }
             .show()
     }

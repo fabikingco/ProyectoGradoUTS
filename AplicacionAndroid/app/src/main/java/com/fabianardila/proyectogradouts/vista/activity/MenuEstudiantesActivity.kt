@@ -1,30 +1,31 @@
 package com.fabianardila.proyectogradouts.vista.activity
 
-import android.content.DialogInterface
+
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AlertDialog
 import com.fabianardila.proyectogradouts.R
 import com.fabianardila.proyectogradouts.modelo.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.fabianardila.proyectogradouts.network.Callback
 import com.fabianardila.proyectogradouts.network.FirestoreService
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import dmax.dialog.SpotsDialog
 import java.lang.Exception
 
 class MenuEstudiantesActivity : AppCompatActivity() {
 
-    private var user: User? = null
-
     lateinit var firestoreService: FirestoreService
+    lateinit var dialogSpots: AlertDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu_estudiantes)
-        user = intent.extras!!["user"] as User
         firestoreService = FirestoreService(FirebaseFirestore.getInstance())
+        dialogSpots = SpotsDialog.Builder().setContext(this).build()
     }
 
     fun clickVisualizarLibros(view: View) {
@@ -34,36 +35,34 @@ class MenuEstudiantesActivity : AppCompatActivity() {
     fun clickMiPerfil(view: View) {
         val currentUser = FirebaseAuth.getInstance().currentUser
         val intent = Intent(this@MenuEstudiantesActivity, PerfilUsuarioActivity::class.java)
-        if (user != null) {
-            intent.putExtra("user", user)
-            startActivity(intent)
-        } else {
-            firestoreService.findUserByEmail(currentUser!!.email.toString(), object: Callback<User>{
-                override fun onSuccess(result: User?) {
-                    intent.putExtra("user", result)
-                    startActivity(intent)
-                }
+        dialogSpots.show()
+        firestoreService.findUserByEmail(currentUser!!.email.toString(), object: Callback<User>{
+            override fun onSuccess(result: User?) {
+                intent.putExtra("user", result)
+                dialogSpots.dismiss()
+                startActivity(intent)
+            }
 
-                override fun onFailed(exception: Exception) {
-                    //TODO("Not yet implemented")
-                }
-            })
-        }
+            override fun onFailed(exception: Exception) {
+                //TODO("Not yet implemented")
+            }
+        })
 
     }
 
     fun clickCerrarSesion(view: View) {
-        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-        builder.setTitle("Desea cerrar sesión?")
-        builder.setPositiveButton(R.string.cerrar_sesion,
-            DialogInterface.OnClickListener { dialogInterface, i ->
+        MaterialAlertDialogBuilder(this@MenuEstudiantesActivity)
+            .setTitle("Desea cerrar sesión?")
+            .setPositiveButton(R.string.cerrar_sesion) { dialog, which ->
                 val mAuth = FirebaseAuth.getInstance()
                 mAuth.signOut()
                 startActivity(Intent(this@MenuEstudiantesActivity, LoginActivity::class.java))
                 finish()
-            })
-        builder.setNegativeButton(getString(R.string.cancelar), null)
-        builder.show()
+            }
+            .setNegativeButton("Cancelar") { dialog, which ->
+                dialog.dismiss()
+            }
+            .show()
     }
 
     fun clickSobreNosotros(view: View) {

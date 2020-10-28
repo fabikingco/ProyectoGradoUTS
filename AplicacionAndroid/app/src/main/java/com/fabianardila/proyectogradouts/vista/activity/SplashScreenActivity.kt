@@ -33,11 +33,6 @@ class SplashScreenActivity : AppCompatActivity() {
         val currentUser= auth.currentUser
         updateUI(currentUser)
 
-        /*Handler().postDelayed({
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
-        }, 3000)*/
     }
 
     private fun updateUI(currentUser: FirebaseUser?) {
@@ -77,7 +72,6 @@ class SplashScreenActivity : AppCompatActivity() {
             finish()
         } else {
             val intent = Intent(this@SplashScreenActivity, MenuEstudiantesActivity::class.java)
-            intent.putExtra("user", user)
             startActivity(intent)
             finish()
         }

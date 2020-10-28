@@ -7,8 +7,6 @@ P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
 X
 (gradle/wrapper/gradle-wrapper.properties,f\b\fbe448ebfc3eb2d4e308f6b8b043666f5b57235e
-n
->app/src/main/java/com/fabianardila/proyectogradouts/Tools.java,4\6\4607f99a27eb406c63f45669dd65c575b339f6b1
 w
 Gapp/src/main/java/com/fabianardila/proyectogradouts/network/Callback.kt,4\a\4a436f6a6798b744ef955461fea8cd8b372458a4
 É
@@ -71,3 +69,11 @@ Fapp/src/main/java/com/fabianardila/proyectogradouts/modelo/Reservas.kt,2\d\2db
 ^app/src/main/java/com/fabianardila/proyectogradouts/vista/adapter/ReservasEstudianteAdapter.kt,f\6\f6ccffd82030ae8df894858d22df25be2afee367
 ê
 `app/src/main/java/com/fabianardila/proyectogradouts/vista/activity/ReservasEstudianteActivity.kt,3\5\35deb0f1ef0f0031470de85895933a42d6adbced
+l
+<app/src/main/java/com/fabianardila/proyectogradouts/Tools.kt,e\e\ee7a0448b08db8dba4ce2364d9ed311c4069c010
+ê
+`app/src/main/java/com/fabianardila/proyectogradouts/vista/activity/VisualizarReservasActivity.kt,f\6\f60e8f254f576758805931ba758ecbb28fb9fe3b
+å
+\app/src/main/java/com/fabianardila/proyectogradouts/vista/activity/BuscarReservasActivity.kt,5\d\5d5b6d8841875607b344a9496d18fc17e3f7a328
+à
+Xapp/src/main/java/com/fabianardila/proyectogradouts/vista/activity/CrearLibroActivity.kt,3\3\33c86c77d6d086f017ead14d023af3f343d72d2f

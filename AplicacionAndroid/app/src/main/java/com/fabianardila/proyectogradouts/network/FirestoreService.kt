@@ -173,6 +173,17 @@ class FirestoreService(val firebaseFirestore: FirebaseFirestore) {
             .addOnFailureListener { exception -> callback!!.onFailed(exception) }
     }
 
+    fun getListCategorias(callback: Callback<List<Categoria>>) {
+        firebaseFirestore.collection(CATEGORIA_COLECCION_NAME)
+            .get()
+            .addOnSuccessListener { result ->
+                callback.onSuccess(result.toObjects(Categoria::class.java))
+            }
+            .addOnFailureListener { exception ->
+                callback.onFailed(exception)
+            }
+    }
+
     fun getCategorias(callback: Callback<List<Categoria>>) {
         val categoriaList = mutableListOf<Categoria>()
         val categoriaTodos = Categoria("1000", "TODOS")
@@ -193,6 +204,23 @@ class FirestoreService(val firebaseFirestore: FirebaseFirestore) {
     fun getReservasByUser(mailUser: String, callback: Callback<List<Reservas>>?) {
         firebaseFirestore.collection(RESERVAS_COLECCION_NAME)
             .whereEqualTo("mailUser", mailUser)
+            .get()
+            .addOnSuccessListener { documents ->
+                val reservasList: MutableList<Reservas> = mutableListOf()
+                for (document in documents){
+                    val reserva = document.toObject(Reservas::class.java)
+                    reserva.idDocument = document.id
+                    reservasList.add(reserva)
+                }
+                callback!!.onSuccess(reservasList)
+            }
+            .addOnFailureListener { exception ->
+                callback!!.onFailed(exception)
+            }
+    }
+
+    fun getReservas(callback: Callback<List<Reservas>>?) {
+        firebaseFirestore.collection(RESERVAS_COLECCION_NAME)
             .get()
             .addOnSuccessListener { documents ->
                 val reservasList: MutableList<Reservas> = mutableListOf()
