@@ -48,4 +48,8 @@ class MenuBibliotecarioActivity : AppCompatActivity() {
     fun clickAgregarLibro(view: View) {
         startActivity(Intent(this@MenuBibliotecarioActivity, CrearLibroActivity::class.java))
     }
+
+    fun clickEditarLibro(view: View) {
+        startActivity(Intent(this@MenuBibliotecarioActivity, ListadoCategoriasEditarActivity::class.java))
+    }
 }

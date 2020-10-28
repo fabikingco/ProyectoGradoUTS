@@ -29,6 +29,12 @@ class FirestoreService(val firebaseFirestore: FirebaseFirestore) {
             .addOnFailureListener { exception -> callback.onFailed(exception) }
     }
 
+    fun setLibro(libro: Libro, callback: Callback<Void>) {
+        firebaseFirestore.collection(LIBROS_COLECTION_NAME).document(libro.id!!).set(libro)
+            .addOnSuccessListener { callback.onSuccess(result = null) }
+            .addOnFailureListener { exception -> callback.onFailed(exception) }
+    }
+
     fun getLibros(callback: Callback<List<Libro>>?) {
         firebaseFirestore.collection(LIBROS_COLECTION_NAME)
             .get()
@@ -51,6 +57,19 @@ class FirestoreService(val firebaseFirestore: FirebaseFirestore) {
             .addOnSuccessListener { documents ->
                 val libroList = documents.toObjects(Libro::class.java)
                 callback!!.onSuccess(libroList)
+            }
+            .addOnFailureListener { exception ->
+                callback!!.onFailed(exception)
+            }
+    }
+
+    fun getSizeLibrosByCategoria(categoria: String, callback: Callback<Int>?) {
+        firebaseFirestore.collection(LIBROS_COLECTION_NAME)
+            .whereEqualTo("categoria", categoria)
+            .get()
+            .addOnSuccessListener { documents ->
+                val libroList = documents.toObjects(Libro::class.java)
+                callback!!.onSuccess(libroList.size)
             }
             .addOnFailureListener { exception ->
                 callback!!.onFailed(exception)

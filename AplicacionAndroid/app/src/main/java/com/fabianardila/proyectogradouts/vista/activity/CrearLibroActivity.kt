@@ -2,8 +2,10 @@ package com.fabianardila.proyectogradouts.vista.activity
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,20 +15,24 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.fabianardila.proyectogradouts.R
+import com.fabianardila.proyectogradouts.Tools
 import com.fabianardila.proyectogradouts.modelo.Categoria
 import com.fabianardila.proyectogradouts.modelo.Libro
 import com.fabianardila.proyectogradouts.network.Callback
 import com.fabianardila.proyectogradouts.network.FirestoreService
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_crear_libro.*
-import kotlinx.android.synthetic.main.activity_registro.*
 import kotlinx.android.synthetic.main.item_text.view.*
 
 class CrearLibroActivity : AppCompatActivity() {
 
+    val requestImage = 100
+    var imageUri: Uri = Uri.EMPTY
     var listCategoria = listOf<Categoria>()
     val listTitleCategoria = mutableListOf<String>()
     var selectCategoria = Categoria()
@@ -38,13 +44,15 @@ class CrearLibroActivity : AppCompatActivity() {
 
     lateinit var firestoreService: FirestoreService
     lateinit var dialogSpots: AlertDialog
+    lateinit var storage: FirebaseStorage
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_crear_libro)
 
-        dialogSpots = SpotsDialog.Builder().setContext(this).build()
+        dialogSpots = SpotsDialog.Builder().setContext(this).setCancelable(false).build()
         firestoreService = FirestoreService(FirebaseFirestore.getInstance())
+        storage = FirebaseStorage.getInstance()
         dialogSpots.show()
 
         initToolbar()
@@ -166,11 +174,11 @@ class CrearLibroActivity : AppCompatActivity() {
     }
 
 
-    class AdapterIsbn : RecyclerView.Adapter<AdapterIsbn.MyViewHolder>(){
+    class AdapterIsbn : RecyclerView.Adapter<AdapterIsbn.MyViewHolder>() {
 
         var listString = emptyList<String>()
 
-        class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         }
 
@@ -193,11 +201,11 @@ class CrearLibroActivity : AppCompatActivity() {
         }
     }
 
-    class AdapterOtrosTitulos : RecyclerView.Adapter<AdapterOtrosTitulos.MyViewHolder>(){
+    class AdapterOtrosTitulos : RecyclerView.Adapter<AdapterOtrosTitulos.MyViewHolder>() {
 
         var listString = emptyList<String>()
 
-        class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         }
 
@@ -227,7 +235,7 @@ class CrearLibroActivity : AppCompatActivity() {
         )
         startActivityForResult(
             pickPhoto,
-            100
+            requestImage
         )
     }
 
@@ -266,6 +274,111 @@ class CrearLibroActivity : AppCompatActivity() {
             libro.fechaPublicacion = etFecha.text.toString()
             libro.categoria = selectCategoria.id
             libro.edicion = etEdicion.text.toString()
+
+            uploadImage(libro)
         }
+    }
+
+    private fun uploadImage(libro: Libro) {
+        dialogSpots = SpotsDialog.Builder()
+            .setContext(this)
+            .setMessage("Subiendo imagen")
+            .setCancelable(false)
+            .build()
+        dialogSpots.show()
+        val storageRef = storage.reference
+        val riversRef = storageRef.child("images/${libro.titulo}")
+        val uploadTask = riversRef.putFile(imageUri)
+        // Register observers to listen for when the download is done or if it fails
+        uploadTask.addOnFailureListener {
+            // Handle unsuccessful uploads
+            dialogSpots.dismiss()
+            showError("subiendo imagen del libro $it")
+        }.addOnSuccessListener { taskSnapshot ->
+            // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
+            // ...
+            dialogSpots.dismiss()
+            Toast.makeText(this@CrearLibroActivity, "Subida de imagen exitosa", Toast.LENGTH_LONG).show()
+            consultarIDLibro(libro)
+        }
+
+
+    }
+
+    private fun consultarIDLibro(libro: Libro) {
+        dialogSpots = SpotsDialog.Builder()
+            .setContext(this)
+            .setMessage("Guardando nuevo libro")
+            .setCancelable(false)
+            .build()
+        dialogSpots.show()
+
+        firestoreService.getSizeLibrosByCategoria(libro.categoria!!, object : Callback<Int>{
+            override fun onSuccess(result: Int?) {
+                var intLibro = result!!
+                intLibro += 1
+                val idLibro = Tools.padLeft(intLibro.toString(), 3, '0')
+                libro.id = libro.categoria+idLibro
+                Log.d("ID LIBRO", "El id es ${libro.id}")
+                subirLibro(libro)
+            }
+
+            override fun onFailed(exception: java.lang.Exception) {
+                dialogSpots.dismiss()
+                showError("consultando id del libro $exception")
+            }
+
+        })
+    }
+
+    private fun showError(error : String) {
+        dialogSpots.dismiss()
+        MaterialAlertDialogBuilder(this@CrearLibroActivity)
+            .setTitle("RESERVA DE LIBROS")
+            .setMessage("Eror al crear el libro " + error)
+            .setCancelable(false)
+            .setPositiveButton("Aceptar") { dialog, which ->
+                dialog.dismiss()
+                startActivity(Intent(this@CrearLibroActivity, MenuBibliotecarioActivity::class.java))
+            }
+            .show()
+    }
+
+    private fun subirLibro(libro: Libro) {
+        firestoreService.setLibro(libro, object : Callback<Void>{
+            override fun onSuccess(result: Void?) {
+                runOnUiThread {
+                    dialogSpots.dismiss()
+                    MaterialAlertDialogBuilder(this@CrearLibroActivity)
+                        .setTitle("RESERVA DE LIBROS")
+                        .setMessage("Libro creado correctamente. Para agregar unidades ingresa a editarlo.")
+                        .setCancelable(false)
+                        .setPositiveButton("Aceptar") { dialog, which ->
+                            dialog.dismiss()
+                            startActivity(Intent(this@CrearLibroActivity, MenuBibliotecarioActivity::class.java))
+                        }
+                        .show()
+                }
+            }
+
+            override fun onFailed(exception: java.lang.Exception) {
+                showError("subiendo el libro $exception")
+            }
+        })
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestImage == requestCode) {
+            if (resultCode == RESULT_OK) {
+                imageUri = data!!.data!!
+                loadImageLibro(imageUri)
+            }
+        }
+    }
+
+    private fun loadImageLibro(imageUri: Uri) {
+        Glide.with(this).load(imageUri)
+            .into(imageLibros)
     }
 }

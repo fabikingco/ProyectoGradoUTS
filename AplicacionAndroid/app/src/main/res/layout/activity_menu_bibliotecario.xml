@@ -102,6 +102,8 @@
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
+            android:focusable="true"
+            android:onClick="clickEditarLibro"
             android:gravity="center_vertical"
             android:minHeight="70dp"
             android:orientation="horizontal"
