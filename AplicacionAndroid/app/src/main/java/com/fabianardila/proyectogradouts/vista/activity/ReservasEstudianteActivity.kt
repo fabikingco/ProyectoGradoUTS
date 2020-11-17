@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.fabianardila.proyectogradouts.R
 import com.fabianardila.proyectogradouts.modelo.Reservas
 import com.fabianardila.proyectogradouts.modelo.Status
-import com.fabianardila.proyectogradouts.network.Callback
-import com.fabianardila.proyectogradouts.network.FirestoreService
-import com.fabianardila.proyectogradouts.vista.adapter.ReservasEstudianteAdapter
+import com.fabianardila.proyectogradouts.controlador.network.Callback
+import com.fabianardila.proyectogradouts.controlador.network.FirestoreService
+import com.fabianardila.proyectogradouts.controlador.adapter.ReservasEstudianteAdapter
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore

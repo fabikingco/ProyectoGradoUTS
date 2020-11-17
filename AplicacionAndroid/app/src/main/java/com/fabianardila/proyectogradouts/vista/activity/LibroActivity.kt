@@ -11,9 +11,9 @@ import com.fabianardila.proyectogradouts.R
 import com.fabianardila.proyectogradouts.modelo.Libro
 import com.fabianardila.proyectogradouts.modelo.Reservas
 import com.fabianardila.proyectogradouts.modelo.Status
-import com.fabianardila.proyectogradouts.network.Callback
-import com.fabianardila.proyectogradouts.network.FirestoreService
-import com.fabianardila.proyectogradouts.vista.adapter.LibrosStatusAdapter
+import com.fabianardila.proyectogradouts.controlador.network.Callback
+import com.fabianardila.proyectogradouts.controlador.network.FirestoreService
+import com.fabianardila.proyectogradouts.controlador.adapter.LibrosStatusAdapter
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth

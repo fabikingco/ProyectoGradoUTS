@@ -188,8 +188,10 @@
                                         android:id="@+id/etFecha"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:inputType="numberSigned"
-                                        android:maxLength="4" />
+                                        android:cursorVisible="false"
+                                        android:focusable="false"
+                                        android:inputType="none"
+                                        android:onClick="fechaPublicacion" />
                                 </com.google.android.material.textfield.TextInputLayout>
                             </LinearLayout>
 

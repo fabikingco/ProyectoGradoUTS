@@ -1,4 +1,4 @@
-package com.fabianardila.proyectogradouts.vista.adapter
+package com.fabianardila.proyectogradouts.controlador.adapter
 
 import android.view.LayoutInflater
 import android.view.View

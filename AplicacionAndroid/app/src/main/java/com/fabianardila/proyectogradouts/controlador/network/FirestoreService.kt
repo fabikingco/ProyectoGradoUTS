@@ -1,4 +1,4 @@
-package com.fabianardila.proyectogradouts.network
+package com.fabianardila.proyectogradouts.controlador.network
 
 import com.fabianardila.proyectogradouts.modelo.*
 import com.google.firebase.firestore.FirebaseFirestore

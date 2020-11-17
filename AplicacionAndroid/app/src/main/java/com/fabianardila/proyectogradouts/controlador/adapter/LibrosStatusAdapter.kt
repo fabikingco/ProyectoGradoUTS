@@ -1,18 +1,15 @@
-package com.fabianardila.proyectogradouts.vista.adapter
+package com.fabianardila.proyectogradouts.controlador.adapter
 
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.fabianardila.proyectogradouts.R
-import com.fabianardila.proyectogradouts.modelo.Libro
 import com.fabianardila.proyectogradouts.modelo.Status
 import com.google.common.base.Ascii.toLowerCase
-import com.squareup.picasso.Picasso
 
 class LibrosStatusAdapter (): RecyclerView.Adapter<LibrosStatusAdapter.ViewHolder>(){
 

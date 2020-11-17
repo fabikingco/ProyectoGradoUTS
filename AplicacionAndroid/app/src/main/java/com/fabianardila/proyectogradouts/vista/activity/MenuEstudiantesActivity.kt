@@ -10,8 +10,8 @@ import com.fabianardila.proyectogradouts.R
 import com.fabianardila.proyectogradouts.modelo.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.fabianardila.proyectogradouts.network.Callback
-import com.fabianardila.proyectogradouts.network.FirestoreService
+import com.fabianardila.proyectogradouts.controlador.network.Callback
+import com.fabianardila.proyectogradouts.controlador.network.FirestoreService
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dmax.dialog.SpotsDialog
 import java.lang.Exception

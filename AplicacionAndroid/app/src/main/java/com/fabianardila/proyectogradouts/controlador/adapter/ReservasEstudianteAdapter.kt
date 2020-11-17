@@ -1,4 +1,4 @@
-package com.fabianardila.proyectogradouts.vista.adapter
+package com.fabianardila.proyectogradouts.controlador.adapter
 
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fabianardila.proyectogradouts.R
-import com.fabianardila.proyectogradouts.modelo.Categoria
 import com.fabianardila.proyectogradouts.modelo.Reservas
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_reservas.view.*

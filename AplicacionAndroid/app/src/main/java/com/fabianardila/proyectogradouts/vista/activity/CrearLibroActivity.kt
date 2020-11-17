@@ -1,16 +1,20 @@
 package com.fabianardila.proyectogradouts.vista.activity
 
 import android.app.AlertDialog
+import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.AttrRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,14 +24,17 @@ import com.fabianardila.proyectogradouts.R
 import com.fabianardila.proyectogradouts.Tools
 import com.fabianardila.proyectogradouts.modelo.Categoria
 import com.fabianardila.proyectogradouts.modelo.Libro
-import com.fabianardila.proyectogradouts.network.Callback
-import com.fabianardila.proyectogradouts.network.FirestoreService
+import com.fabianardila.proyectogradouts.controlador.network.Callback
+import com.fabianardila.proyectogradouts.controlador.network.FirestoreService
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_crear_libro.*
 import kotlinx.android.synthetic.main.item_text.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class CrearLibroActivity : AppCompatActivity() {
 
@@ -380,5 +387,54 @@ class CrearLibroActivity : AppCompatActivity() {
     private fun loadImageLibro(imageUri: Uri) {
         Glide.with(this).load(imageUri)
             .into(imageLibros)
+    }
+
+    fun fechaPublicacion(view: View) {
+        val calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+        calendar.clear()
+
+        val today = MaterialDatePicker.thisMonthInUtcMilliseconds()
+
+        calendar.timeInMillis = today
+
+        val builder = MaterialDatePicker.Builder.datePicker()
+        //builder.setSelection(today)
+        builder.setTheme(resolveOrThrow(this, R.attr.materialCalendarTheme))
+        builder.setTitleText("Fecha de nacimiento")
+
+        val picker: MaterialDatePicker<*> = builder.build()
+        addSnackBarListeners(picker)
+        picker.show(supportFragmentManager, picker.toString())
+    }
+
+    private fun addSnackBarListeners(materialCalendarPicker: MaterialDatePicker<*>) {
+
+        materialCalendarPicker.addOnPositiveButtonClickListener { selection: Any? ->
+
+            val dateSelection: Long = selection as Long
+
+            val timeZoneUTC = TimeZone.getDefault()
+            val offsetFromUTC = timeZoneUTC.getOffset(Date().time) * -1
+
+            val date = Date(dateSelection + offsetFromUTC)
+            val pattern = "dd/MM/yyyy"
+            val simpleDateFormat = SimpleDateFormat(pattern)
+            simpleDateFormat.timeZone = TimeZone.getDefault()
+            etFecha.setText(simpleDateFormat.format(date))
+        }
+        materialCalendarPicker.addOnNegativeButtonClickListener { dialog: View? ->
+
+        }
+        materialCalendarPicker.addOnCancelListener { dialog: DialogInterface? ->
+
+        }
+    }
+
+    private fun resolveOrThrow(context: Context, @AttrRes attributeResId: Int): Int {
+        val typedValue = TypedValue()
+        if (context.theme.resolveAttribute(attributeResId, typedValue, true)) {
+            return typedValue.data
+        }
+        throw IllegalArgumentException(context.resources.getResourceName(attributeResId))
     }
 }

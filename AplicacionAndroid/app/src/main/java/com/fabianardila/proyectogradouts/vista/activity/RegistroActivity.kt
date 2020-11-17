@@ -14,9 +14,9 @@ import com.fabianardila.proyectogradouts.modelo.User
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.fabianardila.proyectogradouts.network.Callback
-import com.fabianardila.proyectogradouts.network.FirestoreService
-import com.fabianardila.proyectogradouts.network.USER_COLECTION_NAME
+import com.fabianardila.proyectogradouts.controlador.network.Callback
+import com.fabianardila.proyectogradouts.controlador.network.FirestoreService
+import com.fabianardila.proyectogradouts.controlador.network.USER_COLECTION_NAME
 import kotlinx.android.synthetic.main.activity_registro.*
 import java.lang.Exception
 

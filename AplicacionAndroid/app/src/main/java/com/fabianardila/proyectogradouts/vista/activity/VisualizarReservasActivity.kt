@@ -10,9 +10,9 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fabianardila.proyectogradouts.R
 import com.fabianardila.proyectogradouts.modelo.Reservas
-import com.fabianardila.proyectogradouts.network.Callback
-import com.fabianardila.proyectogradouts.network.FirestoreService
-import com.fabianardila.proyectogradouts.vista.adapter.ReservasEstudianteAdapter
+import com.fabianardila.proyectogradouts.controlador.network.Callback
+import com.fabianardila.proyectogradouts.controlador.network.FirestoreService
+import com.fabianardila.proyectogradouts.controlador.adapter.ReservasEstudianteAdapter
 import com.google.firebase.firestore.FirebaseFirestore
 import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.activity_visualizar_reservas.*

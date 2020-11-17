@@ -1,4 +1,4 @@
-package com.fabianardila.proyectogradouts.vista.adapter
+package com.fabianardila.proyectogradouts.controlador.adapter
 
 import com.fabianardila.proyectogradouts.modelo.Libro
 

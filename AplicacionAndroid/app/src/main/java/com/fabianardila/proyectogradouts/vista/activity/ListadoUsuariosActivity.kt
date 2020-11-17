@@ -12,10 +12,10 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fabianardila.proyectogradouts.R
 import com.fabianardila.proyectogradouts.modelo.User
-import com.fabianardila.proyectogradouts.network.Callback
-import com.fabianardila.proyectogradouts.network.FirestoreService
-import com.fabianardila.proyectogradouts.vista.adapter.UsuariosAdapter
-import com.fabianardila.proyectogradouts.vista.adapter.UsuariosAdapterListener
+import com.fabianardila.proyectogradouts.controlador.network.Callback
+import com.fabianardila.proyectogradouts.controlador.network.FirestoreService
+import com.fabianardila.proyectogradouts.controlador.adapter.UsuariosAdapter
+import com.fabianardila.proyectogradouts.controlador.adapter.UsuariosAdapterListener
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_listado_usuarios.*
 

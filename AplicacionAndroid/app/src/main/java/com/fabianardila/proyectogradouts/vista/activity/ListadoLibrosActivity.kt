@@ -12,12 +12,12 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fabianardila.proyectogradouts.R
 import com.fabianardila.proyectogradouts.modelo.Libro
-import com.fabianardila.proyectogradouts.vista.adapter.LibrosAdapter
-import com.fabianardila.proyectogradouts.vista.adapter.LibrosAdapterListener
+import com.fabianardila.proyectogradouts.controlador.adapter.LibrosAdapter
+import com.fabianardila.proyectogradouts.controlador.adapter.LibrosAdapterListener
 import com.google.firebase.firestore.FirebaseFirestore
-import com.fabianardila.proyectogradouts.network.Callback
-import com.fabianardila.proyectogradouts.network.FirestoreService
-import com.fabianardila.proyectogradouts.network.RealtimeDataListener
+import com.fabianardila.proyectogradouts.controlador.network.Callback
+import com.fabianardila.proyectogradouts.controlador.network.FirestoreService
+import com.fabianardila.proyectogradouts.controlador.network.RealtimeDataListener
 import kotlinx.android.synthetic.main.activity_listado_libros.*
 
 class ListadoLibrosActivity : AppCompatActivity(), LibrosAdapterListener {

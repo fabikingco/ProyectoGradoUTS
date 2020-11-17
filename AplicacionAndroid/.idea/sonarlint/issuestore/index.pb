@@ -77,3 +77,9 @@ l
 \app/src/main/java/com/fabianardila/proyectogradouts/vista/activity/BuscarReservasActivity.kt,5\d\5d5b6d8841875607b344a9496d18fc17e3f7a328
 ˆ
 Xapp/src/main/java/com/fabianardila/proyectogradouts/vista/activity/CrearLibroActivity.kt,3\3\33c86c77d6d086f017ead14d023af3f343d72d2f
+•
+eapp/src/main/java/com/fabianardila/proyectogradouts/vista/activity/ListadoCategoriasEditarActivity.kt,7\f\7fc872c4d2b6482e79fba0ab595d675f8f8aba07
+‘
+aapp/src/main/java/com/fabianardila/proyectogradouts/vista/activity/ListadoLibrosEditarActivity.kt,e\f\efc8752e92a2257416dc50ed3403da36d232b093
+ˆ
+Xapp/src/main/java/com/fabianardila/proyectogradouts/vista/adapter/LibrosEditarAdapter.kt,9\6\96a732901060d3e056f80c220ea8d96eaefb8aaa
